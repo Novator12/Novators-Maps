@@ -6,7 +6,7 @@
 function OnGameStart()
 
     --DebugFuncs
-    Tools.ExploreArea(1,1,100000)
+    --Tools.ExploreArea(1,1,100000)
     --CLogic.SetAttractionLimitOffset(1,1000)
     --BeginBriefing(1,"IntroID1")
     Syncer.Install()
@@ -222,23 +222,23 @@ end
 function StartIntroErbe()
     -- StartOwnBinkVideo("OldKingsCastle",1)  --nur wenn Bik Video nicht skippable ist
     -- StartOwnBinkVideo("OldKingsCastle",2)  --nur wenn Bik Video nicht skippable ist
-    --StartIntroCutscene()
     Syncer.InvokeEvent(SyncEventActivateArmys)
+    StartIntroBriefing()
 end
 
-function StartOwnBinkVideo(_name,_PlayerID)
-	Mouse.CursorHide()
-	Sound.PauseAll(true)
-    local orig = InputCallback_KeyDown;
-    InputCallback_KeyDown = function() return true; end;
-    Framework.PlayVideo( "Videos\\".._name..".bik" )
-    InputCallback_KeyDown = orig;
+-- function StartOwnBinkVideo(_name,_PlayerID)
+-- 	Mouse.CursorHide()
+-- 	Sound.PauseAll(true)
+--     local orig = InputCallback_KeyDown;
+--     InputCallback_KeyDown = function() return true; end;
+--     Framework.PlayVideo( "Videos\\".._name..".bik" )
+--     InputCallback_KeyDown = orig;
 
-    --StartIntroCutscene()
+--     --cutscene hier starten
 
-	Sound.PauseAll(false)
-	Mouse.CursorShow()
-end
+-- 	Sound.PauseAll(false)
+-- 	Mouse.CursorShow()
+-- end
 
 
 function ActivateSyncArmys()
@@ -290,11 +290,7 @@ function OnPeacetimeOver()
 end
 
 ----------------------Game Funcs--------------------------------------------------------------------------
-function StartIntroCutscene()
-    StartCutscene("introcutscene", IntroCutsceneDone)
-end
-
-function IntroCutsceneDone()
+function StartIntroBriefing()
     if table.getn(GetActivePlayers())>1 then
         BeginBriefing(1,"IntroID1")
         BeginBriefing(2,"IntroID1")
