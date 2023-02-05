@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+ <NameKey>AO2MapDescription/ColorsOfBelief_name</NameKey>
+ <DescKey>AO2MapDescription/ColorsOfBelief_desc</DescKey>
+ <Name>(2) @color:135,205,255 EMS @color:0,100,0  Koop @color:255,255,255 Farben des Glaubens</Name>
+ <Desc>@color:139,0,0 Willkommen in der weiten Ebene der Farben des Glaubens. Für diese Karte wird KEINE CppLogic benötigt. WICHTIG: Beide Spieler müssen entweder ohne oder mit CppLogic spielen.
+ @cr @cr  @color:10,2,255 Tipp: Pilgrim kann hilfreich sein.
+ @cr @cr @color:255,255,255 Viel Spaß beim Spielen wünscht Novator12
+ </Desc>
+ <SizeX>641</SizeX>
+ <SizeY>641</SizeY>
+ <MPFlag>true</MPFlag>
+ <MPPlayerCount>2</MPPlayerCount>
+ <MPGameOptionFlagSet>3</MPGameOptionFlagSet>
+ <MiniMapTextureName>data\graphics\Textures\GUI\MapPics\externalmap</MiniMapTextureName>
+ <Key>2</Key>
+ <GUID>
+  <Data>310d641f-382f-4fb0-b62b-8dcda462fc93</Data>
+ </GUID>
+</root>

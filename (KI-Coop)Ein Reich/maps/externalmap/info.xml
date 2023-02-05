@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+ <NameKey>Volcano</NameKey>
+ <DescKey>Volcano</DescKey>
+ <Name>Ein Reich by Novator12</Name>
+ <Desc>Kerberos und Mary leben glücklich und zufrieden in ihrem idylischen Reich, doch Böses erwartet sie... Dario ist mit Ahri, Erec und Helias auf dem Vormarsch und will Kerberos und Mary entgültig besiegen. Lasst dies nicht zu und verteidigt euch gegen Dario und seine Ergebenen. WICHTIG: Hinter dem Tor der Wache an eurer Burg-KEINE DORFZENTREN ODER ANDERE GEBÄUDE BAUEN-(außer Türme an den Vier Toren zum Gegner)--damit der Aufbau der KI nicht gestört wird!!!!</Desc>
+ <SizeX>513</SizeX>
+ <SizeY>513</SizeY>
+ <MPFlag>false</MPFlag>
+ <MPPlayerCount>2</MPPlayerCount>
+ <MPGameOptionFlagSet>3</MPGameOptionFlagSet>
+ <MiniMapTextureName>data\graphics\Textures\GUI\MapPics\externalmap</MiniMapTextureName>
+ <Key>2</Key>
+ <GUID>
+  <Data>9fcf6a8c-73a2-4dd0-9220-2aab4e2b0dcc</Data>
+ </GUID>
+</root>

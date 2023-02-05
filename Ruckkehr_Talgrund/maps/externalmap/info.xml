@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+ <NameKey>Volcano</NameKey>
+ <DescKey>Volcano</DescKey>
+<Name>Rückkehr nach Talgrund</Name>
+<Desc>Nach einer langen Reise durch das Reich des alten Kerons und vielen Strapazen die unsere Helden erleiden mussten, kehren Dario und Ari zurück nach Thalgrund. Doch was sie dort erwartet ist nichts Gutes....</Desc>
+ <SizeX>577</SizeX>
+ <SizeY>577</SizeY>
+ <MPFlag>false</MPFlag>
+ <MPPlayerCount>1</MPPlayerCount>
+ <MPGameOptionFlagSet>3</MPGameOptionFlagSet>
+ <MiniMapTextureName>data\graphics\Textures\GUI\MapPics\externalmap</MiniMapTextureName>
+ <Key>2</Key>
+ <GUID>
+  <Data>754ac2da-43fa-4f8d-b74a-c5361de5485a</Data>
+ </GUID>
+</root>

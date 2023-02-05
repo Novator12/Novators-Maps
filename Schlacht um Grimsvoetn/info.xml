@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+ <NameKey>Volcano</NameKey>
+ <DescKey>Volcano</DescKey>
+ <Name>@color:0,100,0 Schlacht um Grimsvötn</Name>
+ <Desc>@color:64,224,208 Im hohen isländischen Norden erhebt sich der Vulkan Grimsvötn über seine umliegenden Dörfer und Städte. Varg ist mit seinen Mitstreitern nach den Ereignissen in Thalgrund in seine Heimat Reynivellir aufgebrochen um nach seiner Familie zu sehen. Was wird in dort, in einer so trostlosen Gegend nur erwarten?
+    @cr @cr @color:0,204,0 Features: @color:255,255,255  - Neue Gebäude und Truppen, sowie eine ausgeklügelte Storyline, welche in verschiedenen Schwierigkeiten gespielt werden kann.
+    @cr @cr @color:255,153,0 Wichtig: @color:255,255,255  Diese Karte benötigt die neusten Cpp-Logic Version von mcb, da sein Modloader benutzt wird. CppLogic muss im S5Updater aktiviert sein.
+    @cr @cr Viel Spaß beim Spielen wünscht @color:64,224,208  Novator12
+
+ </Desc>
+ <SizeX>417</SizeX>
+ <SizeY>417</SizeY>
+ <MPFlag>false</MPFlag>
+ <MPPlayerCount>1</MPPlayerCount>
+ <MPGameOptionFlagSet>3</MPGameOptionFlagSet>
+ <MiniMapTextureName>maps\user\Schlacht um Grimsvoetn\mappic</MiniMapTextureName>
+ <Key>2</Key>
+ <GUID>
+  <Data>d48ad1a3-3fd2-4276-a30d-7dee8ee03fc1</Data>
+ </GUID>
+</root>
