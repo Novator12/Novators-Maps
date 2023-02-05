@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+ <NameKey>Volcano</NameKey>
+ <DescKey>Volcano</DescKey>
+ <Name>(2) EMS Koop Erbe der Koenige</Name>
+ <Desc>@color:135,205,255 von Vision_SFC @cr @cr @color:255,255,255 Verschlungene Pfade führen euch zum gegnerischen Terrain. Jeder Spieler besitzt 2 Schwefel-/Eisenminen und 1 Lehm-/Steinmine. 3 DZ pro Spieler. Das Wasser kann nicht gefrieren. Viel Spass wünscht Vision_SFC @cr @cr Gegenüber sind sich Spieler 1-2 zu 7-8 sowie 3-4 zu 5-6</Desc>
+ <SizeX>769</SizeX>
+ <SizeY>769</SizeY>
+ <MPFlag>true</MPFlag>
+ <MPPlayerCount>2</MPPlayerCount>
+ <MPGameOptionFlagSet>3</MPGameOptionFlagSet>
+ <MiniMapTextureName>data\graphics\Textures\GUI\MapPics\externalmap</MiniMapTextureName>
+ <Key>2</Key>
+ <GUID>
+  <Data>8101cad8-75b4-4647-a37f-2278bee2c065</Data>
+ </GUID>
+</root>
