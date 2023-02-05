@@ -177,12 +177,7 @@ function OnGameStart()
             Logic.SetTechnologyState(i, Technologies.T_Sights, 3)
         end
 
-        --PlayerStartCalls
-        StopPayday1 = StartSimpleJob("ResetGoldTillStart1")
-        StopPayday2 = StartSimpleJob("ResetGoldTillStart2")
 
-        ResourcesCompleted1 = StartSimpleJob("ResourcesPlayer1")
-        ResourcesCompleted2 = StartSimpleJob("ResourcesPlayer2")
 
         Logic.SetPlayerPaysLeaderFlag(1, 0)
         Logic.SetPlayerPaysLeaderFlag(2, 0)
@@ -337,6 +332,7 @@ function HeliasClaimCastle()
         local PlayerColor = "@color:"..table.concat({GUI.GetPlayerColor(1)}, ",");
         Message("@color:127,255,0 Mentor: @color:255,255,255 "..PlayerColor.." "..PlayerName.." @color:255,255,255 hat seine Burg eingenommen!")
         HeliasCastleClaimed = true
+        ResourcesPlayer1()
         return true
     end
 end
@@ -359,6 +355,7 @@ function KerberosClaimCastle()
         local PlayerColor = "@color:"..table.concat({GUI.GetPlayerColor(2)}, ",");
         Message("@color:127,255,0 Mentor: @color:255,255,255 "..PlayerColor.." "..PlayerName.." @color:255,255,255 hat seine Burg eingenommen!")
         KerberosCastleClaimed = true
+        ResourcesPlayer2()
         return true
     end
 end
@@ -394,7 +391,6 @@ VillageCenterBuild2 = false
     local _,ent = Logic.GetEntitiesInArea(Entities.PB_VillageCenter1,pos.X,pos.Y,1000,1)
     if Logic.GetPlayerEntities(1, Entities.PB_VillageCenter1, 1) == 1 and VillageCenterBuild1 == false and Logic.IsConstructionComplete(ent) == 1 then
         Logic.SetPlayerPaysLeaderFlag(1, 1)
-        EndJob(StopPayday1)
         VillageCenterBuild1 = true
         local PlayerName = UserTool_GetPlayerName(1);
         local PlayerColor = "@color:"..table.concat({GUI.GetPlayerColor(1)}, ",");
@@ -403,7 +399,6 @@ VillageCenterBuild2 = false
     end
     if Logic.GetPlayerEntities(2, Entities.PB_VillageCenter1, 1) == 1 and VillageCenterBuild2 == false and Logic.IsConstructionComplete(ent) == 1 then
         Logic.SetPlayerPaysLeaderFlag(2, 1)
-        EndJob(StopPayday2)
         VillageCenterBuild2 = true
         local PlayerName = UserTool_GetPlayerName(2);
         local PlayerColor = "@color:"..table.concat({GUI.GetPlayerColor(2)}, ",");
@@ -431,7 +426,6 @@ function ResourcesPlayer1()
         
         --Add Players Resources
         Tools.GiveResouces(1, InitGoldRaw , InitClayRaw,InitWoodRaw, InitStoneRaw,InitIronRaw,InitSulfurRaw)
-        EndJob(ResourcesCompleted1)
     elseif CheckMode == 2 and HeliasCastleClaimed == true then
          -- Initial Resources
          local InitGoldRaw 		= 1200
@@ -445,7 +439,6 @@ function ResourcesPlayer1()
          --Add Players Resources
 
         Tools.GiveResouces(1, InitGoldRaw , InitClayRaw,InitWoodRaw, InitStoneRaw,InitIronRaw,InitSulfurRaw)
-        EndJob(ResourcesCompleted1)
     elseif CheckMode == 3 and HeliasCastleClaimed == true then
          -- Initial Resources
          local InitGoldRaw 		= 900
@@ -459,8 +452,6 @@ function ResourcesPlayer1()
          --Add Players Resources
 
          Tools.GiveResouces(1, InitGoldRaw , InitClayRaw,InitWoodRaw, InitStoneRaw,InitIronRaw,InitSulfurRaw)
-         EndJob(ResourcesCompleted1)
-
     end
 
  end
@@ -478,7 +469,6 @@ function ResourcesPlayer1()
         
         --Add Players Resources
         Tools.GiveResouces(2, InitGoldRaw , InitClayRaw,InitWoodRaw, InitStoneRaw,InitIronRaw,InitSulfurRaw)
-        EndJob(ResourcesCompleted2)
     elseif CheckMode == 2 and KerberosCastleClaimed == true then
          -- Initial Resources
          local InitGoldRaw 		= 1200
@@ -492,7 +482,6 @@ function ResourcesPlayer1()
          --Add Players Resources
 
         Tools.GiveResouces(2, InitGoldRaw , InitClayRaw,InitWoodRaw, InitStoneRaw,InitIronRaw,InitSulfurRaw)
-        EndJob(ResourcesCompleted2)
     elseif CheckMode == 3 and KerberosCastleClaimed == true then
          -- Initial Resources
          local InitGoldRaw 		= 900
@@ -506,26 +495,8 @@ function ResourcesPlayer1()
          --Add Players Resources
 
          Tools.GiveResouces(2, InitGoldRaw , InitClayRaw,InitWoodRaw, InitStoneRaw,InitIronRaw,InitSulfurRaw)
-         EndJob(ResourcesCompleted2)
     end
-
  end
-
-
- function ResetGoldTillStart1()
-    if CheckMode == 0 then
-        gold1 = Logic.GetPlayersGlobalResource(1, ResourceType.GoldRaw)
-        Logic.SubFromPlayersGlobalResource(1, ResourceType.Gold, gold1)
-    end
-end
-
-function ResetGoldTillStart2()
-    if CheckMode == 0 then
-        gold2 = Logic.GetPlayersGlobalResource(2, ResourceType.GoldRaw)
-        Logic.SubFromPlayersGlobalResource(2, ResourceType.Gold, gold2)
-    end
-end
-
 
 
 ------------------------Setup Mode-----------------------------------------------------------------------
