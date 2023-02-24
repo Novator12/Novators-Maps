@@ -631,6 +631,7 @@ function Erbe.SetupDiplomacy()
     NPCState = {6}
     DarioState = {7,12}
     RobberState = {8,13}
+    KalaState = {16}
     
     SetTableDiplomacyState(1, Player1State, Player2State)
 
@@ -672,6 +673,14 @@ function Erbe.SetupDiplomacy()
     SetTableDiplomacyState(2, NPCState, RobberState)
 
     SetTableDiplomacyState(3, DarioState, RobberState)
+
+    SetTableDiplomacyState(3, KalaState, Player1State)
+    SetTableDiplomacyState(3, KalaState, Player2State)
+    SetTableDiplomacyState(3, KalaState, BarmeciaState)
+    SetTableDiplomacyState(3, KalaState, FolklungState)
+    SetTableDiplomacyState(3, KalaState, VargState)
+    SetTableDiplomacyState(3, KalaState, DarioState)
+    SetTableDiplomacyState(3, KalaState, RobberState)
 
 
 end

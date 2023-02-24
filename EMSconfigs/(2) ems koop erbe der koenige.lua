@@ -22,7 +22,7 @@ EMS_CustomMapConfig =
 	-- * Configuration File Version
 	-- * A version check will make sure every player has the same version of the configuration file
 	-- ********************************************************************************************
-	Version = 1.1,
+	Version = 1.2,
  
 	-- ********************************************************************************************
 	-- * Debug Mode
@@ -75,14 +75,18 @@ EMS_CustomMapConfig =
 		Script.Load(gvBasePath.. "army_BanditDarioFight.lua");
 		Script.Load(gvBasePath.. "army_BarbarenFolklungFight.lua");
 		Script.Load(gvBasePath.. "army_VargBarmecia.lua");
+		Script.Load(gvBasePath.. "army_finalBarmecia.lua");
+		Script.Load(gvBasePath.. "army_finalDario.lua");
+		Script.Load(gvBasePath.. "army_finalFolklung.lua");
+		Script.Load(gvBasePath.. "army_nv.lua");
 		Script.Load(gvBasePath.. "daily_cycle.lua");
 		Script.Load(gvBasePath.. "daily_cycle_rain.lua");
 		Script.Load(gvBasePath.. "daily_cycle_snow.lua");
 		Script.Load(gvBasePath.. "MainMapScript.lua");
-		Script.Load(gvBasePath.. "cutscenes.lua");
 		Script.Load(gvBasePath.. "ErbeTrigger.lua");
 		Script.Load(gvBasePath.. "briefings.lua");
 		Script.Load(gvBasePath.. "Debug.lua");
+		Script.Load(gvBasePath.. "questline.lua");
 		Script.Load(gvBasePath.. "Lighthouse.lua");
 		Script.Load(gvBasePath.. "Merchant.lua");
 
@@ -102,7 +106,11 @@ EMS_CustomMapConfig =
 		for i=1,11 do
 			XGUIEng.ShowWidget("EMSPUGFrame"..i,0)
 		end
-	
+		XGUIEng.ShowWidget("EMSPUMisc",0)
+		XGUIEng.ShowWidget("EMSPUAll",0)
+		XGUIEng.ShowWidget("EMSPHChoice",0)
+		XGUIEng.ShowWidget("EMSPUHeroes",0)
+		XGUIEng.ShowWidget("EMSPURandomizeRules",0)
 		--Sommertage
 
 		for i=1,3,1 do
@@ -149,6 +157,7 @@ EMS_CustomMapConfig =
 		Entities.XD_WallStraight, 
 		Entities.XD_WallDistorted)
 
+		Logic.SetPlayerRawName(16, "???")
 		Logic.SetPlayerRawName(3, "Barmecia")
 		Logic.SetPlayerRawName(4, "Folklung")
 		Logic.SetPlayerRawName(5, "Varg")
@@ -156,6 +165,7 @@ EMS_CustomMapConfig =
 		Logic.SetPlayerRawName(7, "Old Kings Castle")
 		Logic.SetPlayerRawName(8, "Räuber")
 
+		Logic.SetPlayerName(16, "???")
 		Logic.SetPlayerName(3, "Barmecia")
 		Logic.SetPlayerName(4, "Folklung")
 		Logic.SetPlayerName(5, "Varg")
@@ -199,6 +209,8 @@ EMS_CustomMapConfig =
 		--Banditen
 		Display.SetPlayerColorMapping(8, colors[3])
 		Display.SetPlayerColorMapping(13, colors[3])
+		--Kala
+		Display.SetPlayerColorMapping(16, 2)
 
 		--Alle ID Namen und Farben:
 		for i = 1,8,1 do
@@ -213,6 +225,7 @@ EMS_CustomMapConfig =
 			[6] = "Landvolk",
 			[7] = "Old Kings Castle",
 			[8] = "Räuber",
+			[16] = "Kala",
 		   }
 	   
 	   for j = 1,2,1 do
@@ -446,7 +459,7 @@ EMS_CustomMapConfig =
 	WeatherChangeLockTimer =  3,
  
 	-- * Enables chaning to a specific weather with the weather tower
-	MakeSummer = 0,
+	MakeSummer = 1,
 	MakeRain   = 1,
 	MakeSnow   = 1,
  
