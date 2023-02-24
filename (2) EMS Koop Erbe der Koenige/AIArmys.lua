@@ -307,3 +307,137 @@ function UpgradeAI()
     end
 end
 
+function UpgradeArmyAggressivness()
+    --Barmecia 
+    CountBar = 0
+    for i=1,CheckMode do
+        local _range = 100000
+        MapEditor_Armies[9][i+CountBar].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[9][i+CountBar].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[9][i+CountBar].outerDefenseRange	=	_range
+		MapEditor_Armies[9][i+CountBar].AttackAllowed		=	true
+        MapEditor_Armies[9][i+1+CountBar].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[9][i+1+CountBar].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[9][i+1+CountBar].outerDefenseRange	=	_range
+		MapEditor_Armies[9][i+1+CountBar].AttackAllowed		=	true
+        MapEditor_Armies[9][i+2+CountBar].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[9][i+2+CountBar].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[9][i+2+CountBar].outerDefenseRange	=	_range
+		MapEditor_Armies[9][i+2+CountBar].AttackAllowed		=	true
+        CountBar = CountBar+2
+    end
+
+    --FolklungMain
+    CountFolk1 = 0
+    for i=1,CheckMode do
+        local _range = 100000
+        MapEditor_Armies[10][i+CountFolk1].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[10][i+CountFolk1].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[10][i+CountFolk1].outerDefenseRange	=	_range
+		MapEditor_Armies[10][i+CountFolk1].AttackAllowed		=	true
+        MapEditor_Armies[10][i+1+CountFolk1].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[10][i+1+CountFolk1].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[10][i+1+CountFolk1].outerDefenseRange	=	_range
+		MapEditor_Armies[10][i+1+CountFolk1].AttackAllowed		=	true
+        MapEditor_Armies[10][i+2+CountFolk1].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[10][i+2+CountFolk1].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[10][i+2+CountFolk1].outerDefenseRange	=	_range
+		MapEditor_Armies[10][i+2+CountFolk1].AttackAllowed		=	true
+        CountFolk1 = CountFolk1+2
+    end
+
+    --FolklungOutpost
+    CountFolk2 = 0
+    for i=1,CheckMode do
+        local _range = 100000
+        MapEditor_Armies[14][i+CountFolk2].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[14][i+CountFolk2].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[14][i+CountFolk2].outerDefenseRange	=	_range
+		MapEditor_Armies[14][i+CountFolk2].AttackAllowed		=	true
+        MapEditor_Armies[14][i+1+CountFolk2].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[14][i+1+CountFolk2].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[14][i+1+CountFolk2].outerDefenseRange	=	_range
+		MapEditor_Armies[14][i+1+CountFolk2].AttackAllowed		=	true
+        MapEditor_Armies[14][i+2+CountFolk2].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[14][i+2+CountFolk2].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[14][i+2+CountFolk2].outerDefenseRange	=	_range
+		MapEditor_Armies[14][i+2+CountFolk2].AttackAllowed		=	true
+        CountFolk2 = CountFolk2+2
+    end
+
+    --VargMain
+    CountVar1 = 0
+    for i=1,CheckMode do
+        local _range = 100000
+        MapEditor_Armies[11][i+CountVar1].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[11][i+CountVar1].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[11][i+CountVar1].outerDefenseRange	=	_range
+		MapEditor_Armies[11][i+CountVar1].AttackAllowed		=	true
+        MapEditor_Armies[11][i+1+CountVar1].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[11][i+1+CountVar1].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[11][i+1+CountVar1].outerDefenseRange	=	_range
+		MapEditor_Armies[11][i+1+CountVar1].AttackAllowed		=	true
+        MapEditor_Armies[11][i+2+CountVar1].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[11][i+2+CountVar1].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[11][i+2+CountVar1].outerDefenseRange	=	_range
+		MapEditor_Armies[11][i+2+CountVar1].AttackAllowed		=	true
+        CountVar1 = CountVar1+2
+    end
+
+    --VargOutpost
+    CountVar2 = 0
+    for i=1,CheckMode do
+        local _range = 100000
+        MapEditor_Armies[15][i+CountVar2].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[15][i+CountVar2].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[15][i+CountVar2].outerDefenseRange	=	_range
+		MapEditor_Armies[15][i+CountVar2].AttackAllowed		=	true
+        MapEditor_Armies[15][i+1+CountVar2].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[15][i+1+CountVar2].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[15][i+1+CountVar2].outerDefenseRange	=	_range
+		MapEditor_Armies[15][i+1+CountVar2].AttackAllowed		=	true
+        MapEditor_Armies[15][i+2+CountVar2].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[15][i+2+CountVar2].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[15][i+2+CountVar2].outerDefenseRange	=	_range
+		MapEditor_Armies[15][i+2+CountVar2].AttackAllowed		=	true
+        CountVar2 = CountVar2+2
+    end
+
+    --Dario
+    CountDar = 0
+    for i=1,CheckMode do
+        local _range = 100000
+        MapEditor_Armies[12][i+CountDar].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[12][i+CountDar].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[12][i+CountDar].outerDefenseRange	=	_range
+		MapEditor_Armies[12][i+CountDar].AttackAllowed		=	true
+        MapEditor_Armies[12][i+1+CountDar].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[12][i+1+CountDar].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[12][i+1+CountDar].outerDefenseRange	=	_range
+		MapEditor_Armies[12][i+1+CountDar].AttackAllowed		=	true
+        MapEditor_Armies[12][i+2+CountDar].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[12][i+2+CountDar].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[12][i+2+CountDar].outerDefenseRange	=	_range
+		MapEditor_Armies[12][i+2+CountDar].AttackAllowed		=	true
+        CountDar = CountDar+2
+    end
+
+    --Bandits
+    CountBan = 0
+    for i=1,CheckMode do
+        local _range = 100000
+        MapEditor_Armies[13][i+CountBan].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[13][i+CountBan].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[13][i+CountBan].outerDefenseRange	=	_range
+		MapEditor_Armies[13][i+CountBan].AttackAllowed		=	true
+        MapEditor_Armies[13][i+1+CountBan].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[13][i+1+CountBan].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[13][i+1+CountBan].outerDefenseRange	=	_range
+		MapEditor_Armies[13][i+1+CountBan].AttackAllowed		=	true
+        MapEditor_Armies[13][i+2+CountBan].rodeLength			=	(_range*2)/3
+		MapEditor_Armies[13][i+2+CountBan].baseDefenseRange		=	(_range)/3
+		MapEditor_Armies[13][i+2+CountBan].outerDefenseRange	=	_range
+		MapEditor_Armies[13][i+2+CountBan].AttackAllowed		=	true
+        CountBan = CountBan+2
+    end
+end

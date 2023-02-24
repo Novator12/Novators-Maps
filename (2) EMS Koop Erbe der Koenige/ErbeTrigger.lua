@@ -20,6 +20,8 @@ function ActivateTriggers()
 	Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND, nil, "RandomChestHandler", 1, nil, nil)
 end
 
+VargGateFlag = false
+
 function VargGateChecker()
 	if Logic.GetPlayerEntitiesInArea(9,0,GetPosition("gatepos").X,GetPosition("gatepos").Y,1000,16,nil) >0 
 	or Logic.GetPlayerEntitiesInArea(1,0,GetPosition("gatepos").X,GetPosition("gatepos").Y,1000,16,nil) >0 
@@ -30,6 +32,14 @@ function VargGateChecker()
 	or Logic.GetPlayerEntitiesInArea(1,0,GetPosition("gatepos").X,GetPosition("gatepos").Y,1000,16,nil) <=0
 	or Logic.GetPlayerEntitiesInArea(2,0,GetPosition("gatepos").X,GetPosition("gatepos").Y,1000,16,nil) <=0) then
 		ReplaceEntity("BarbGate",Entities.XD_PalisadeGate2)
+	end
+	if VargGateFlag == true then
+		if Logic.GetEntitiesInArea(Entities.XD_PalisadeGate1,GetPosition("gatepos").X,GetPosition("gatepos").Y,100,1) > 0 then
+			ReplaceEntity("BarbGate",Entities.XD_PalisadeGate2)
+			return true
+		else 
+			return true
+		end
 	end
 end
 

@@ -37,3 +37,18 @@ function SpawnDebugTroups()
 		CreateMilitaryGroup(1,Entities.PU_LeaderBow4,8,GetPosition("debug"..i),"debugt"..i,nil)
 	end
 end
+
+function DebugNV()
+	Logic.SetPlayerRawName(16, "Kala")
+	Logic.SetPlayerName(16, "Kala")
+	Display.SetPlayerColorMapping(16, 2)
+	for i=1,8,1 do
+		for j=1,2,1 do 
+			local pos = GetPosition("secretdef"..i.."_"..j)
+			local name = Logic.CreateEntity(Entities.CB_Evil_Tower1,pos.X,pos.Y,0,16)
+			DestroyEntity("secretdef"..i.."_"..j)
+			SetEntityName(name,"secretdef"..i.."_"..j)
+		end
+	end
+	StartNVRush()
+end

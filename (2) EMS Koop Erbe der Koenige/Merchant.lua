@@ -84,19 +84,21 @@ function MerchantHandler()
 	elseif Merchant.MerchParameters.currentWaitTime >= Merchant.MerchParameters.waitToRespawn and Merchant.MerchParameters.state == 4 then
 		Merchant.MerchParameters.currentWaitTime = 0
 		Merchant.MerchParameters.tradeLevel = Merchant.MerchParameters.tradeLevel + 1
-		if Merchant.MerchParameters.tradeLevel > 2 then --ab dem 3. mal
+		if Merchant.MerchParameters.tradeLevel == 3 then --ab dem 3. mal
 			Merchant.MerchParameters.TroopsToSell = {
 				[1] = {Entities.PU_LeaderBow2, {Gold = 300,Wood = 200},4,nil},
 				[2] = {Entities.PU_LeaderSword2, {Gold = 300,Iron = 250},4,nil},
 				[3] = {Entities.PV_Cannon2, {Gold = 300, Iron = 200, Sulfur = 200},4,nil},	
 			}
-		elseif Merchant.MerchParameters.tradeLevel > 4 then --ab dem 5. mal
+		end
+		if Merchant.MerchParameters.tradeLevel == 5 then --ab dem 5. mal
 			Merchant.MerchParameters.TroopsToSell = {
 				[1] = {Entities.PU_LeaderBow3, {Gold = 400,Wood = 300},4,nil},
 				[2] = {Entities.PU_LeaderSword3, {Gold = 400,Iron = 350},4,nil},
 				[3] = {Entities.PV_Cannon3, {Gold = 400, Iron = 300, Sulfur = 300},4,nil},	
 			}
-		elseif Merchant.MerchParameters.tradeLevel > 6 then --ab dem 7. mal
+		end
+		if Merchant.MerchParameters.tradeLevel == 7 then --ab dem 7. mal
 			Merchant.MerchParameters.TroopsToSell = {
 				[1] = {Entities.PU_LeaderBow4, {Gold = 500,Wood = 400},4,nil},
 				[2] = {Entities.PU_LeaderSword4, {Gold = 500,Iron = 450},4,nil},

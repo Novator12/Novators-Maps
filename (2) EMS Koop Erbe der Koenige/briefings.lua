@@ -314,6 +314,9 @@ StartSimpleJob("CounterJobLeo")
 function ActivateLeoBriefing()
 	if IsDestroyed("biron_tower1") and IsDestroyed("biron_tower2") and IsDestroyed("B_Attack1") and IsDestroyed("B_Attack2") and IsDestroyed("B_Attack3") then
 		DestroyEntity("fence_leo")
+		ReplaceEntity("gate_biron",Entities.XD_PalisadeGate2)
+		ReplaceEntity("outpost_gate1",Entities.XD_WallStraightGate)
+		ReplaceEntity("outpost_gate2",Entities.XD_WallStraightGate)
 		if table.getn(GetActivePlayers())>1 then
 			Syncer.InvokeEvent(SyncEventID9)
 		else
@@ -326,8 +329,19 @@ end
 StartSimpleJob("ActivateLeoBriefing")
 
 function SyncLeoBrief()
-	LeonardoBriefing(1,"LeoBrief")
-	LeonardoBriefing(2,"LeoBrief")
+	NonPlayerCharacter.Create(
+			{ScriptName = "leo",     
+			Callback = StartLeoBrief })
+	NonPlayerCharacter.Activate("leo")
+end
+
+function StartLeoBrief()
+	if table.getn(GetActivePlayers())>1 then
+		LeonardoBriefing(1,"LeoBrief")
+		LeonardoBriefing(2,"LeoBrief")
+	else
+		LeonardoBriefing(1,"LeoBrief")
+	end
 end
 
 -----------------------------------------------Guard_ID7_Briefing--------------------------------------------------------
@@ -426,4 +440,235 @@ function ID7Hostile()
     SetTableDiplomacyState(3, Player2State, DarioState)
 	EndJob(GateJob_ID7)
 	HostileToID7 = true
+end
+
+
+
+
+BriefCountBarmeciaMayor = 0
+
+function StartBarmeciaMayorBrief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("BarmeciaMayor",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Bürgermeister von Barmecia",
+        Text     = "@color:255,0,0 Guten Tag {n:"..gvLastInteractionHeroName.."}, ich habe lange nichts mehr von euch gehört. Wir brauchen dringend eure Hilfe!",
+        Target   = "BarmeciaMayor",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,0,0 Hallo Bürgermeister, wie können wir "..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,0,0 helfen.",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Bürgermeister von Barmecia",
+        Text     = "@color:255,0,0 Unser Dom wurde durch die vielen Angriffe von Vargs Schergen wieder zerstört. Wir konnten die Baustelle absichern, jedoch fehlen uns die Ressourcen um den Bau zu vollenden.",
+        Target   = "BarmeciaMayor",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,0,0 Was braucht Ihr denn für den Bau?",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Bürgermeister von Barmecia",
+        Text     = "@color:255,0,0 Wir benötigen 10.000 @color:139,140,122 Steine @color:255,255,255 und 5.000 @color:139,90,43 Holz. @color:255,255,255 Beachtet jedoch, wenn Ihr den Dom errichtet, dass die anderen Regenten euch den Krieg erklären.",
+        Target   = "BarmeciaMayor",
+        MiniMap = false,
+        
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function()
+		BriefCountBarmeciaMayor = BriefCountBarmeciaMayor + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobBarmeciaMayor()
+	if BriefCountBarmeciaMayor == 2 then
+		TributBarmecia()
+		BarmeciaFlag = false
+		return true
+	end
+end
+StartSimpleJob("CounterJobBarmeciaMayor")
+
+
+function TributBarmecia()
+    local TrBar =  {}
+    TrBar.pId = 1
+    TrBar.text = Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3]..": @color:255,255,255 Sendet 10.000 @color:139,140,122 Steine @color:255,255,255 und 5.000 @color:139,90,43 Holz @color:255,255,255 an Barmecia für den Dombau. (Schwer)"
+    TrBar.cost = { Stone = 10000, Wood = 5000 }
+    TrBar.Callback = PayedBarmecia
+    TBar = AddTribute(TrBar)
+end
+
+
+BriefCountFolklung = 0
+
+function StartFolklungBrief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("salim",gvLastInteractionHeroName)
+	LookAt("pilgrim",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Salim",
+        Text     = "@color:255,0,0 Ich grüße dich {n:"..gvLastInteractionHeroName.."}, wir stehen kurz vor der Auslöschung. Könnt Ihr uns helfen die Blockade der Barbaren zu durchbrechen?",
+        Target   = "salim",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,0,0 Hallo Salim, Hallo Pilgrim, was bietet Ihr uns denn, wenn wir euch helfen?",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Pilgrim",
+        Text     = "@color:255,0,0 Auch ich grüße euch, wenn Ihr uns helft, unterstützen wir euch im Kampf um die Krone. Jedoch werden die anderen Anwärter das nicht für Gut heißen.",
+        Target   = "pilgrim",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,0,0 Verstanden, wir werden es uns überlegen. Unsere Entscheidung schicken wir euch bald zu. !(Schaut ins Tributmenü)!",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function()
+		BriefCountFolklung = BriefCountFolklung + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobFolklung()
+	if BriefCountFolklung == 2 then
+		TributFolklung()
+		FolklungFlag = false
+		return true
+	end
+end
+StartSimpleJob("CounterJobFolklung")
+
+
+function TributFolklung()
+    local TrFolk =  {}
+    TrFolk.pId = 1
+    TrFolk.text = Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4]..": @color:255,255,255 Kämpft mit Folklung zusammen! (Leicht)"
+    TrFolk.cost = { Gold = 0 }
+    TrFolk.Callback = PayedFolklung
+    TFolk = AddTribute(TrFolk)
+end
+
+
+
+BriefCountDario = 0
+
+function StartDarioBrief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("ari",gvLastInteractionHeroName)
+	LookAt("drake",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Ari",
+        Text     = "@color:255,0,0 {n:"..gvLastInteractionHeroName.."}, schön, dass Ihr nach so langer Zeit vorbei schaut. Wir befinden uns gerade in einer brenzlichen Lage!",
+        Target   = "ari",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,0,0 Hallo Ari, Servus Drake, wir haben schon bemerkt, dass euch die Banditen gut zusetzen.",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Drake",
+        Text     = "@color:255,0,0 Genau! Wenn Ihr uns finanzielle Unterstützunh bietet, werden wir euch bei der Besteigung des Trons helfen. Das wird jedoch den anderen Anwärtern nicht gefallen.",
+        Target   = "drake",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,0,0 Verstanden, wir werden es uns überlegen. Unsere Entscheidung schicken wir euch bald zu. !(Schaut ins Tributmenü)!",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function()
+		BriefCountDario = BriefCountDario + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobDario()
+	if BriefCountDario == 2 then
+		TributDario()
+		DarioFlag = false
+		return true
+	end
+end
+StartSimpleJob("CounterJobDario")
+
+
+function TributDario()
+    local TrDar =  {}
+    TrDar.pId = 1
+    TrDar.text = Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7]..": @color:255,255,255 Unterstüzt Darios Königreich mit 15.000 @color:212,175,55 Talern. @color:255,255,255 (Mittel)"
+    TrDar.cost = { Gold = 15000 }
+    TrDar.Callback = PayedDario
+    TDar = AddTribute(TrDar)
 end

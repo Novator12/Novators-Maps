@@ -8,7 +8,6 @@ function OnGameStart()
     --DebugFuncs
     --Tools.ExploreArea(1,1,100000)
     --CLogic.SetAttractionLimitOffset(1,1000)
-    --BeginBriefing(1,"IntroID1")
     Syncer.Install()
     CreateSyncEvents()
 
@@ -18,6 +17,8 @@ function OnGameStart()
    --  Start IntroBrief
     if table.getn(GetActivePlayers()) > 1 then
         StartIntroErbe()
+    else
+        StartIntroErbe()
     end
 
 
@@ -26,7 +27,6 @@ function OnGameStart()
     Placeholder.DefineNamePlaceholder("kerberos", "Kerberos")
 
     StartSimpleJob("DefeatBedingung")
-    StartSimpleJob("Sieg")
     HQSelection()
     CreateWoodPile( "woodpile1", 1000000 )
     CreateWoodPile( "woodpile2", 1000000 )
@@ -215,25 +215,10 @@ end
 
 
 function StartIntroErbe()
-    -- StartOwnBinkVideo("OldKingsCastle",1)  --nur wenn Bik Video nicht skippable ist
-    -- StartOwnBinkVideo("OldKingsCastle",2)  --nur wenn Bik Video nicht skippable ist
     Syncer.InvokeEvent(SyncEventActivateArmys)
-    StartIntroBriefing()
+    --StartIntroBriefing()
 end
 
--- function StartOwnBinkVideo(_name,_PlayerID)
--- 	Mouse.CursorHide()
--- 	Sound.PauseAll(true)
---     local orig = InputCallback_KeyDown;
---     InputCallback_KeyDown = function() return true; end;
---     Framework.PlayVideo( "Videos\\".._name..".bik" )
---     InputCallback_KeyDown = orig;
-
---     --cutscene hier starten
-
--- 	Sound.PauseAll(false)
--- 	Mouse.CursorShow()
--- end
 
 
 function ActivateSyncArmys()
@@ -257,31 +242,35 @@ end
 -- werden sollen. Gibt es keine Friedenszeit wird es sofort ausgeführt, sobald
 -- die Regeln eingestellt wurden.
 function OnPeacetimeOver()
+
+    Syncer.InvokeEvent(SyncEventOnPeaceTimeOver)
+    ReplaceEntity("sp1_gate",Entities.XD_PalisadeGate2)
+	if table.getn(GetActivePlayers())>1 then
+        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
+        Logic.AddQuest(2, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
+	else
+        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
+    end
+end
+
+function SyncOnPeaceTimeOver()
+    StartQuestline()
     ActivateBanditIron()
     ActivateBanditAttackers()
-    ReplaceEntity("sp1_gate",Entities.XD_PalisadeGate2)
-
     --ActivateAttackers
     StartSimpleJob("NorfolkAttack1")
 	StartSimpleJob("NorfolkAttack2")
-	if table.getn(GetActivePlayers())>1 then
+    if table.getn(GetActivePlayers())>1 then
 		DelayStrongerNorfolk1()
 		DelayStrongerNorfolk2()
         DelayStrongerBarmeica1()
 		DelayStrongerBarmeica2()
-        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-        Logic.AddQuest(2, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-        Logic.AddQuest(1, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
-        Logic.AddQuest(1, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
-	else
+    else
 		DelayStrongerNorfolk1()
 		DelayStrongerNorfolk2()
         DelayStrongerBarmeica1()
 		DelayStrongerBarmeica2()
-        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-	end
-
-
+    end
 end
 
 ----------------------Game Funcs--------------------------------------------------------------------------
@@ -705,21 +694,9 @@ function DefeatBedingung()
     end
 end
 
----------------------------------------------------------------------------------------------------------
 
-function Sieg()
-    if IsDead("hq7") and ("hq4") then
-        if table.getn(GetActivePlayers())==2 then
-            Logic.PlayerSetGameStateToWon(1)
-            Logic.PlayerSetGameStateToWon(2)
-            return true;
-        elseif table.getn(GetActivePlayers())==1 then
-            Logic.PlayerSetGameStateToWon(1)
-            return true;
-        end
-    end
 
-end
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -1221,6 +1198,16 @@ function CreateSyncEvents()
     SyncEventID9 = Syncer.CreateEvent(SyncLeoBrief);
     SyncEventID10 = Syncer.CreateEvent(SyncGuardBrief);
 
+    SyncEventOnPeaceTimeOver = Syncer.CreateEvent(SyncOnPeaceTimeOver);
+
     SyncEventActivateArmys = Syncer.CreateEvent(ActivateSyncArmys);
     SyncEventActivateModeSelectionArmys = Syncer.CreateEvent(ActivateSyncModeArmys);
+
+    SyncFinalArmy1 = Syncer.CreateEvent(SyncFinalFight1)
+    
+    SyncFinalArmy2 = Syncer.CreateEvent(SyncFinalFight2)
+     
+    SyncFinalArmy3 = Syncer.CreateEvent(SyncFinalFight3)
+
+    SyncFinaleKala = Syncer.CreateEvent(SyncKalaAttack)
 end
