@@ -42,63 +42,63 @@ function BeginBriefing(_playerID,_Name)
         Text     = "@color:255,255,255 Die Burg von "..Erbe.Tables.PlayerInfos.Colors[1].." "..Erbe.Tables.PlayerInfos.Names[1].." @color:255,255,255 befindet sich hier.",
         Target   = "hq1",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("hq1").X,GetPosition("hq1").Y,0) Tools.ExploreArea(GetPosition("hq1").X,GetPosition("hq1").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("hq1").X,GetPosition("hq1").Y,0) Tools.ExploreArea(GetPosition("hq1").X,GetPosition("hq1").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
         Text     = "@color:255,255,255 Die Burg von "..Erbe.Tables.PlayerInfos.Colors[2].." "..Erbe.Tables.PlayerInfos.Names[2].." @color:255,255,255 befindet sich hier.",
         Target   = "hq2",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("hq2").X,GetPosition("hq2").Y,0) Tools.ExploreArea(GetPosition("hq2").X,GetPosition("hq2").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("hq2").X,GetPosition("hq2").Y,0) Tools.ExploreArea(GetPosition("hq2").X,GetPosition("hq2").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
         Text     = "@color:255,255,255 Im Westen befindet sich "..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 . Sie werden zur Zeit stark von Varg angegriffen. Ihr solltet Ihnen so bald es geht helfen.",
         Target   = "BarmCastle",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("BarmCastle").X,GetPosition("BarmCastle").Y,2) Tools.ExploreArea(GetPosition("BarmCastle").X,GetPosition("BarmCastle").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("BarmCastle").X,GetPosition("BarmCastle").Y,2) Tools.ExploreArea(GetPosition("BarmCastle").X,GetPosition("BarmCastle").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
         Text     = "@color:255,255,255 Und wo wir direkt bei "..Erbe.Tables.PlayerInfos.Colors[5].." "..Erbe.Tables.PlayerInfos.Names[5].." @color:255,255,255 sind: Er hat Norfolk eingenommen und hält die Stadt als Außenposten für seine Angriffe auf "..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." .",
         Target   = "hq5",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("hq5").X,GetPosition("hq5").Y,2) Tools.ExploreArea(GetPosition("hq5").X,GetPosition("hq5").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("hq5").X,GetPosition("hq5").Y,2) Tools.ExploreArea(GetPosition("hq5").X,GetPosition("hq5").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
         Text     = "@color:255,255,255 Ebenso greift er von seinem Hauptlager im Nordwesten "..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 und "..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 an.",
         Target   = "VargCastle",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("VargCastle").X,GetPosition("VargCastle").Y,2) Tools.ExploreArea(GetPosition("VargCastle").X,GetPosition("VargCastle").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("VargCastle").X,GetPosition("VargCastle").Y,2) Tools.ExploreArea(GetPosition("VargCastle").X,GetPosition("VargCastle").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
         Text     = "@color:255,255,255 Hoch im Norden haben sich Salim und Pilgrim niedergelassen und regieren mit eiserner Faust über "..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." .",
         Target   = "FolklungCastle",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("FolklungCastle").X,GetPosition("FolklungCastle").Y,2) Tools.ExploreArea(GetPosition("FolklungCastle").X,GetPosition("FolklungCastle").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("FolklungCastle").X,GetPosition("FolklungCastle").Y,2) Tools.ExploreArea(GetPosition("FolklungCastle").X,GetPosition("FolklungCastle").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
         Text     = "@color:255,255,255 Ebenfalls haben die beiden Darios alte Siedlung in "..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 übernommen und sie in einen Vorposten verwandelt.",
         Target   = "outpost_id4",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("outpost_id4").X,GetPosition("outpost_id4").Y,2) Tools.ExploreArea(GetPosition("outpost_id4").X,GetPosition("outpost_id4").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("outpost_id4").X,GetPosition("outpost_id4").Y,2) Tools.ExploreArea(GetPosition("outpost_id4").X,GetPosition("outpost_id4").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
         Text     = "@color:255,255,255 Nach dem Tod von Dario hat sich Ari mit Drake vermählt. Sie führen nun "..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 .",
         Target   = "OKC",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("OKC").X,GetPosition("OKC").Y,2) Tools.ExploreArea(GetPosition("OKC").X,GetPosition("OKC").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("OKC").X,GetPosition("OKC").Y,2) Tools.ExploreArea(GetPosition("OKC").X,GetPosition("OKC").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
         Text     = "@color:255,255,255 Zu guter Letzt sind da noch die "..Erbe.Tables.PlayerInfos.Colors[8].." "..Erbe.Tables.PlayerInfos.Names[8].." @color:255,255,255 ,welche Ihr Lager im Osten aufgeschlagen haben. Sie haben Darios ehemalige Burg in den Nebelberen eingenommen und kontrollieren nun den Pass.",
         Target   = "hq8",
         MiniMap = true,
-		Action = function() GUI.CreateMinimapMarker(GetPosition("hq8").X,GetPosition("hq8").Y,2) Tools.ExploreArea(GetPosition("hq8").X,GetPosition("hq8").Y,10) end
+		Action = function() GUI.CreateMinimapMarker(GetPosition("hq8").X,GetPosition("hq8").Y,2) Tools.ExploreArea(GetPosition("hq8").X,GetPosition("hq8").Y,20) end
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Mentor",
@@ -116,7 +116,14 @@ function BeginBriefing(_playerID,_Name)
 
 	
 	briefing.Starting = function() end
-	briefing.Finished = function() end
+	briefing.Finished = function()
+		if _playerID == 1 then
+			Camera.ScrollSetLookAt(GetPosition("helias").X,GetPosition("helias").Y)
+		end
+		if _playerID == 2 then
+			Camera.ScrollSetLookAt(GetPosition("kerberos").X,GetPosition("kerberos").Y)
+		end
+	end
 	return BriefingSystem.Start(_playerID, _Name, briefing)
 end
 

@@ -1,22 +1,15 @@
 function StartQuestline()
 
-    --1. Quest Barmecia
-    if table.getn(GetActivePlayers())>1 then
-        Logic.AddQuest(1, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
-        Logic.AddQuest(2, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+    --1. Quest 
+        Logic.AddQuest(1, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+        Logic.AddQuest(2, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
 
-        Logic.AddQuest(1, 5, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
-        Logic.AddQuest(2, 5, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(1, 5, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(2, 5, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
 
-        Logic.AddQuest(1, 6, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
-        Logic.AddQuest(2, 6, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(1, 6, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(2, 6, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
 
-
-	else
-        Logic.AddQuest(1, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
-        Logic.AddQuest(1, 5, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
-        Logic.AddQuest(1, 6, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg die Straßensperre zu umgehen.,", 1)
-    end
 
     NonPlayerCharacter.Create(
 			{ScriptName = "BarmeciaMayor",     
@@ -40,44 +33,32 @@ function StartQuestline()
 end
 
 function ActivateBarmeciaBrief()
-    if table.getn(GetActivePlayers())>1 then
-        StartBarmeciaMayorBrief(1,"BarmBrief")
-        StartBarmeciaMayorBrief(2,"BarmBrief")
-    else
-        StartBarmeciaMayorBrief(1,"BarmBrief")
-    end
+    StartBarmeciaMayorBrief(1,"BarmBrief")
+    StartBarmeciaMayorBrief(2,"BarmBrief")
 end
 
 function ActivateFolklungBrief()
-    if table.getn(GetActivePlayers())>1 then
-        StartFolklungBrief(1,"FolkBrief")
-        StartFolklungBrief(2,"FolkBrief")
-    else
-        StartFolklungBrief(1,"FolkBrief")
-    end
+    StartFolklungBrief(1,"FolkBrief")
+    StartFolklungBrief(2,"FolkBrief")
 end
 
 function ActivateDarioBrief()
-    if table.getn(GetActivePlayers())>1 then
-        StartDarioBrief(1,"DarioBrief")
-        StartDarioBrief(2,"DarioBrief")
-    else
-        StartDarioBrief(1,"DarioBrief")
-    end
+    StartDarioBrief(1,"DarioBrief")
+    StartDarioBrief(2,"DarioBrief")
 end
 
 
 function QuestlineHandler()
     if BarmeciaFlag == true then
 
-        Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
-        Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+        Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+        Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
 
-        Logic.AddQuest(1, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
-        Logic.AddQuest(2, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(1, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(2, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
 
-        Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
-        Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
 
         Logic.AddQuest(1, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
         Logic.AddQuest(2, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
@@ -115,14 +96,14 @@ function QuestlineHandler()
         return true
     elseif FolklungFlag == true then
 
-        Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
-        Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+        Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+        Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
 
-        Logic.AddQuest(1, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
-        Logic.AddQuest(2, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(1, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(2, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
 
-        Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
-        Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
 
         Logic.AddQuest(1, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
         Logic.AddQuest(2, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
@@ -160,14 +141,14 @@ function QuestlineHandler()
         return true
     elseif DarioFlag == true then
 
-        Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
-        Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+        Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+        Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
 
-        Logic.AddQuest(1, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
-        Logic.AddQuest(2, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(1, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(2, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
 
-        Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
-        Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
 
         Logic.AddQuest(1, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
         Logic.AddQuest(2, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)

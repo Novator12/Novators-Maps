@@ -1,7 +1,7 @@
 -- Hier kommen meine Funktionen rein, die nach den Regeleinstellungen ausgeführt
 -- werden sollen. Sind Regeln fest, dann wird es sofort ausgeführt.
 
-    VersionCheck = 1.3
+    VersionCheck = 1.4
 
 function OnGameStart()
 
@@ -55,11 +55,11 @@ function OnGameStart()
     --Init Triggers
     ActivateTriggers()
 
-    --Truhen
-    Treasure.RandomChest("chest1_1", 200, 800)
-    Treasure.RandomChest("chest1_2", 200, 800)
-    Treasure.RandomChest("chest2_1", 200, 800)
-    Treasure.RandomChest("chest2_2", 200, 800)
+    --Truhen desyncen :( Nobody knows why? When you know it, tell me
+    -- Treasure.RandomChest("chest1_1", 200, 800)
+    -- Treasure.RandomChest("chest1_2", 200, 800)
+    -- Treasure.RandomChest("chest2_1", 200, 800)
+    -- Treasure.RandomChest("chest2_2", 200, 800)
 
 
     --AI Setup
@@ -235,7 +235,7 @@ function StartIntroErbe()
     StartCountdown(60*20,InitTrader,false)
     --Upgrade AI Init
     StartCountdown(60*40,UpgradeAI,false)
-    --StartIntroBriefing()
+    StartIntroBriefing()
 end
 
 
@@ -501,14 +501,14 @@ function Erbe.Mode1()
 
     --StartTruppen
     for i = 1, 2, 1 do
-        CreateMilitaryGroup(i, Entities.PU_LeaderSword3, 8, GetPosition("sp" .. i .. "_help1"), "sp" .. i .. "_trupp1")
-        CreateMilitaryGroup(i, Entities.PU_LeaderSword3, 8, GetPosition("sp" .. i .. "_help1"), "sp" .. i .. "_trupp2")
-        CreateMilitaryGroup(i, Entities.PU_LeaderSword3, 8, GetPosition("sp" .. i .. "_help2"), "sp" .. i .. "_trupp3")
-        CreateMilitaryGroup(i, Entities.PU_LeaderSword3, 8, GetPosition("sp" .. i .. "_help2"), "sp" .. i .. "_trupp4")
-        CreateMilitaryGroup(i, Entities.PU_LeaderBow3, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp5")
-        CreateMilitaryGroup(i, Entities.PU_LeaderBow3, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp6")
-        CreateMilitaryGroup(i, Entities.PU_LeaderBow3, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp7")
-        CreateMilitaryGroup(i, Entities.PU_LeaderBow3, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp8")
+        CreateMilitaryGroup(i, Entities.PU_LeaderSword4, 8, GetPosition("sp" .. i .. "_help1"), "sp" .. i .. "_trupp1")
+        CreateMilitaryGroup(i, Entities.PU_LeaderSword4, 8, GetPosition("sp" .. i .. "_help1"), "sp" .. i .. "_trupp2")
+        CreateMilitaryGroup(i, Entities.PU_LeaderSword4, 8, GetPosition("sp" .. i .. "_help2"), "sp" .. i .. "_trupp3")
+        CreateMilitaryGroup(i, Entities.PU_LeaderSword4, 8, GetPosition("sp" .. i .. "_help2"), "sp" .. i .. "_trupp4")
+        CreateMilitaryGroup(i, Entities.PU_LeaderBow4, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp5")
+        CreateMilitaryGroup(i, Entities.PU_LeaderBow4, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp6")
+        CreateMilitaryGroup(i, Entities.PU_LeaderBow4, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp7")
+        CreateMilitaryGroup(i, Entities.PU_LeaderBow4, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp8")
         CreateMilitaryGroup(i, Entities.PV_Cannon4, 0, GetPosition("sp" .. i .. "_help4"), "sp" .. i .. "_trupp9")
         CreateMilitaryGroup(i, Entities.PV_Cannon4, 0, GetPosition("sp" .. i .. "_help4"), "sp" .. i .. "_trupp10")
     end
@@ -535,6 +535,7 @@ function Erbe.Mode2()
         CreateMilitaryGroup(i, Entities.PU_LeaderBow3, 8, GetPosition("sp" .. i .. "_help3"), "sp" .. i .. "_trupp6")
         CreateMilitaryGroup(i, Entities.PV_Cannon2, 0, GetPosition("sp" .. i .. "_help4"), "sp" .. i .. "_trupp7")
         CreateMilitaryGroup(i, Entities.PV_Cannon2, 0, GetPosition("sp" .. i .. "_help4"), "sp" .. i .. "_trupp8")
+        CreateMilitaryGroup(i, Entities.PV_Cannon2, 0, GetPosition("sp" .. i .. "_help4"), "sp" .. i .. "_trupp9")
     end
 
 
