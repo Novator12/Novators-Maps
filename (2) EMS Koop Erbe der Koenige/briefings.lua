@@ -317,18 +317,14 @@ function ActivateLeoBriefing()
 		ReplaceEntity("gate_biron",Entities.XD_PalisadeGate2)
 		ReplaceEntity("outpost_gate1",Entities.XD_WallStraightGate)
 		ReplaceEntity("outpost_gate2",Entities.XD_WallStraightGate)
-		if table.getn(GetActivePlayers())>1 then
-			Syncer.InvokeEvent(SyncEventID9)
-		else
-			LeonardoBriefing(1,"LeoBrief")
-		end
+		CreateLeoBrief()
 		return true
 	end
 end
 
 StartSimpleJob("ActivateLeoBriefing")
 
-function SyncLeoBrief()
+function CreateLeoBrief()
 	NonPlayerCharacter.Create(
 			{ScriptName = "leo",     
 			Callback = StartLeoBrief })
@@ -336,12 +332,8 @@ function SyncLeoBrief()
 end
 
 function StartLeoBrief()
-	if table.getn(GetActivePlayers())>1 then
-		LeonardoBriefing(1,"LeoBrief")
-		LeonardoBriefing(2,"LeoBrief")
-	else
-		LeonardoBriefing(1,"LeoBrief")
-	end
+	LeonardoBriefing(1,"LeoBrief")
+	LeonardoBriefing(2,"LeoBrief")
 end
 
 -----------------------------------------------Guard_ID7_Briefing--------------------------------------------------------
@@ -398,18 +390,14 @@ StartSimpleJob("CounterJobGuardID7")
 
 function HeroNearGuard_ID7()
 	if IsNear("helias","guard_id7",2000) or IsNear("kerberos","guard_id7",2000) then
-		if table.getn(GetActivePlayers())>1 then
-			Syncer.InvokeEvent(SyncEventID10)
-		else
-			Guard_ID7_Briefing(1,"GuardBrief")
-		end
+		CreateGuardBrief()
 		return true
 	end
 end
 
 StartSimpleJob("HeroNearGuard_ID7")
 
-function SyncGuardBrief()
+function CreateGuardBrief()
 	Guard_ID7_Briefing(1,"GuardBrief")
 	Guard_ID7_Briefing(2,"GuardBrief")
 end
@@ -428,6 +416,7 @@ function EntitiesInHostileArea_ID7()
 	elseif Gate_ID7_State == true then
 		if EnemyCountdown_ID7 then
 			StopCountdown(EnemyCountdown_ID7)
+			---@diagnostic disable-next-line: assign-type-mismatch
 			EnemyCountdown_ID7 = nil
 		end
 	end

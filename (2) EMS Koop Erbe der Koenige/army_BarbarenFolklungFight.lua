@@ -43,13 +43,10 @@ function ActivateBarbarenAttackers()
 
 	
 
-	if table.getn(GetActivePlayers())>1 then
-		Syncer.InvokeEvent(SyncEventID1)
-		Syncer.InvokeEvent(SyncEventID2)
-	else
-		DelayStrongerBarbarians1()
-		DelayStrongerBarbarians2()
-	end
+	
+	DelayStrongerBarbarians1()
+    DelayStrongerBarbarians2()
+	
 	function BarbarianAttack1()
 		for j = 1, 3, 1 do
 			if IsExisting("tentBarb" .. j) then
@@ -306,13 +303,10 @@ function ActivateFolklungAttackers()
 	RespawnFolk = 55
 
 
-	if table.getn(GetActivePlayers())>1 then
-		Syncer.InvokeEvent(SyncEventID3)
-		Syncer.InvokeEvent(SyncEventID4)
-	else
-		DelayStrongerFolklungJob1()
-		DelayStrongerFolklungJob2()
-	end
+	
+	DelayStrongerFolklungJob1()
+	DelayStrongerFolklungJob2()
+	
 
 	function FolklungAttack1()
 		for j = 1, 3, 1 do

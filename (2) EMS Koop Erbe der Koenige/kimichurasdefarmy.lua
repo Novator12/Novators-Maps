@@ -345,6 +345,7 @@ function DefensiveArmy_Update()
 						for i = 1, table.getn(enemies) do
 							local enemyid = enemies[i];
 							local dist = DefensiveArmy_Distance(x, y, Logic.EntityGetPos(enemyid));
+							---@diagnostic disable-next-line: redundant-parameter
 							local att = CEntity.GetAttachedEntities(enemyid)[37];
 							local attacker_target_n = att and table.getn(att) or 0;
 							dist = dist - attacker_target_n * 50;

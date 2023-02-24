@@ -110,8 +110,10 @@ function LighthouseSelection()
                 XGUIEng.ShowWidget("Upgrade_Lighthouse",1)
             end
         end
-        if sel == LighthouseTable[player].DefTowerID then
-            GUI.DeselectEntity(LighthouseTable[player].DefTowerID)
+        if LighthouseTable[player] then
+            if sel == LighthouseTable[player].DefTowerID then
+                GUI.DeselectEntity(LighthouseTable[player].DefTowerID)
+            end
         end
     end
 end

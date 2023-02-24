@@ -1,6 +1,10 @@
 {
     "Lua.diagnostics.globals": [
         "Erbe",
-        "StartQuestline"
+        "StartQuestline",
+        "CNetwork",
+        "CEntityIterator",
+        "CUtilMemory",
+        "CMod"
     ]
 }

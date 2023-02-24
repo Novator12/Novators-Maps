@@ -848,7 +848,7 @@ function SetupFinalFight2()
 	SetupDarioFinal2()
 end
 
-function SyncFinalFight2()
+function CreateFinalFight2()
 	ActivateBarmeciaFinal2()
 	ActivateFolklungFinal2()
 	ActivateOutpostFinal2()

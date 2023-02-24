@@ -44,13 +44,10 @@ function ActivateVargFlankeAttackers()
 
 	
 
-	if table.getn(GetActivePlayers())>1 then
-		Syncer.InvokeEvent(SyncEventID7)
-		Syncer.InvokeEvent(SyncEventID8)
-	else
-		DelayStrongerVargBar1()
-		DelayStrongerVargBar2()
-	end
+	
+	DelayStrongerVargBar1()
+	DelayStrongerVargBar2()
+	
 	
 
 

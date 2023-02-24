@@ -111,7 +111,7 @@ function QuestlineHandler()
         VargGateFlag = true
         UpgradeArmyAggressivness()
         SetupFinalFight1() 
-        Syncer.InvokeEvent(SyncFinalArmy1)
+        CreateFinalFight1()
         return true
     elseif FolklungFlag == true then
 
@@ -156,7 +156,7 @@ function QuestlineHandler()
         VargGateFlag = true
         UpgradeArmyAggressivness()
         SetupFinalFight2() 
-        Syncer.InvokeEvent(SyncFinalArmy2)
+        CreateFinalFight2()
         return true
     elseif DarioFlag == true then
 
@@ -201,7 +201,7 @@ function QuestlineHandler()
         VargGateFlag = true
         UpgradeArmyAggressivness()
         SetupFinalFight3() 
-        Syncer.InvokeEvent(SyncFinalArmy3)
+        CreateFinalFight3()
         return true
     end
 end
@@ -300,7 +300,7 @@ function VictoryHandler()
         and IsDestroyed("id7_archery2")
         and IsDestroyed("id7_kanonen")
         and IsDestroyed("OKC") then
-            Syncer.InvokeEvent(SyncFinaleKala)    
+             CreateKalaAttack()
         end
     elseif FolklungFlag == true then
         if IsDestroyed("VargCastle") 
@@ -326,7 +326,7 @@ function VictoryHandler()
         and IsDestroyed("BarArchery")
         and IsDestroyed("BarKaserne")
         and IsDestroyed("BarReiter") then
-            Syncer.InvokeEvent(SyncFinaleKala)  
+            CreateKalaAttack()
         end
     elseif DarioFlag == true then
         if IsDestroyed("VargCastle") 
@@ -356,7 +356,7 @@ function VictoryHandler()
         and IsDestroyed("id4_kaserne3") 
         and IsDestroyed("id4_archery")
         and IsDestroyed("id4_reiter") then
-            Syncer.InvokeEvent(SyncFinaleKala)  
+            CreateKalaAttack()
         end
     elseif SecretFlag == true then
         if IsDestroyed("VargCastle") 
@@ -394,13 +394,13 @@ function VictoryHandler()
         and IsDestroyed("id7_archery2")
         and IsDestroyed("id7_kanonen")
         and IsDestroyed("OKC") then
-            Syncer.InvokeEvent(SyncFinaleKala)  
+            CreateKalaAttack()
         end
     end
 
 end
 
-function SyncKalaAttack()
+function CreateKalaAttack()
     Logic.SetPlayerRawName(16, "Kala")
 	Logic.SetPlayerName(16, "Kala")
     Display.SetPlayerColorMapping(16, 2)

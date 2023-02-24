@@ -1,25 +1,34 @@
 -- Hier kommen meine Funktionen rein, die nach den Regeleinstellungen ausgeführt
 -- werden sollen. Sind Regeln fest, dann wird es sofort ausgeführt.
 
-
+    VersionCheck = 1.3
 
 function OnGameStart()
+
+    if EMS.RD.Rules.GameMode.value == 1 then
+        EMS.RD.Rules.Peacetime.value = 62
+        Erbe.Mode1()
+        CheckMode = 1
+    elseif EMS.RD.Rules.GameMode.value == 2 then
+        EMS.RD.Rules.Peacetime.value = 52
+        Erbe.Mode2()
+        CheckMode = 2
+    else
+        EMS.RD.Rules.Peacetime.value = 42
+        Erbe.Mode3()
+        CheckMode = 3
+    end
 
     --DebugFuncs
     --Tools.ExploreArea(1,1,100000)
     --CLogic.SetAttractionLimitOffset(1,1000)
     Syncer.Install()
-    CreateSyncEvents()
 
     --Fix Escape during Cutscenes
     FixEscapeCutscene()
 
    --  Start IntroBrief
-    if table.getn(GetActivePlayers()) > 1 then
-        StartIntroErbe()
-    else
-        StartIntroErbe()
-    end
+    StartIntroErbe()
 
 
     --Placeholders
@@ -47,10 +56,10 @@ function OnGameStart()
     ActivateTriggers()
 
     --Truhen
-    -- Treasure.RandomChest("chest1_1", 200, 800)
-    -- Treasure.RandomChest("chest1_2", 200, 800)
-    -- Treasure.RandomChest("chest2_1", 200, 800)
-    -- Treasure.RandomChest("chest2_2", 200, 800)
+    Treasure.RandomChest("chest1_1", 200, 800)
+    Treasure.RandomChest("chest1_2", 200, 800)
+    Treasure.RandomChest("chest2_1", 200, 800)
+    Treasure.RandomChest("chest2_2", 200, 800)
 
 
     --AI Setup
@@ -215,45 +224,26 @@ end
 
 
 function StartIntroErbe()
-    Syncer.InvokeEvent(SyncEventActivateArmys)
+    --StartArmeen
+    ActivateNorfolkAttackers()
+    ActivateBarmeciaAttackers()
+    ActivateID8FightID7() 
+    ActivateBarbarenAttackers()
+    ActivateFolklungAttackers()
+    ActivateVargFlankeAttackers()
+    --Händler kommt das erste mal nach 20 min
+    StartCountdown(60*20,InitTrader,false)
+    --Upgrade AI Init
+    StartCountdown(60*40,UpgradeAI,false)
     --StartIntroBriefing()
 end
 
-
-
-function ActivateSyncArmys()
-    if not ArmiesActivated then
-        ArmiesActivated = true
-        --StartArmeen
-        ActivateNorfolkAttackers()
-        ActivateBarmeciaAttackers()
-        ActivateID8FightID7() 
-        ActivateBarbarenAttackers()
-        ActivateFolklungAttackers()
-        ActivateVargFlankeAttackers()
-        --Händler kommt das erste mal nach 20 min
-        StartCountdown(60*20,InitTrader,false)
-        --Upgrade AI Init
-        StartCountdown(60*40,UpgradeAI,false)
-    end
-end
 
 -- Hier kommen die Funktionen rein, die nach Ende der Friedenszeit ausgeführt
 -- werden sollen. Gibt es keine Friedenszeit wird es sofort ausgeführt, sobald
 -- die Regeln eingestellt wurden.
 function OnPeacetimeOver()
 
-    Syncer.InvokeEvent(SyncEventOnPeaceTimeOver)
-    ReplaceEntity("sp1_gate",Entities.XD_PalisadeGate2)
-	if table.getn(GetActivePlayers())>1 then
-        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-        Logic.AddQuest(2, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-	else
-        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-    end
-end
-
-function SyncOnPeaceTimeOver()
     StartQuestline()
     ActivateBanditIron()
     ActivateBanditAttackers()
@@ -271,7 +261,17 @@ function SyncOnPeaceTimeOver()
         DelayStrongerBarmeica1()
 		DelayStrongerBarmeica2()
     end
+
+    ReplaceEntity("sp1_gate",Entities.XD_PalisadeGate2)
+	if table.getn(GetActivePlayers())>1 then
+        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
+        Logic.AddQuest(2, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
+	else
+        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
+    end
 end
+
+
 
 ----------------------Game Funcs--------------------------------------------------------------------------
 function StartIntroBriefing()
@@ -515,7 +515,8 @@ function Erbe.Mode1()
 
 
     Message("Schwierigkeit: @color:57,245,26 LEICHT @color:255,255,255 wurde gewaehlt!")
-    Syncer.InvokeEvent(SyncEventActivateModeSelectionArmys)
+    ActivateBandits()
+    ActivateIronDef()
     Erbe.SetupAI()
 end
 
@@ -538,7 +539,8 @@ function Erbe.Mode2()
 
 
     Message("Schwierigkeit: @color:255,150,0 NORMAL @color:255,255,255 wurde gewaehlt!")
-    Syncer.InvokeEvent(SyncEventActivateModeSelectionArmys)
+    ActivateBandits()
+    ActivateIronDef()
     Erbe.SetupAI()
 end
 
@@ -561,18 +563,12 @@ function Erbe.Mode3()
 
 
     Message("Schwierigkeit: @color:255,0,0 SCHWER @color:255,255,255 wurde gewaehlt!")
-    Syncer.InvokeEvent(SyncEventActivateModeSelectionArmys)
+    ActivateBandits()
+    ActivateIronDef()
     Erbe.SetupAI()
 end
 
 
-function ActivateSyncModeArmys()
-    if not ModeSelectionArmiesActivated then
-        ModeSelectionArmiesActivated = true
-        ActivateBandits()
-        ActivateIronDef()
-    end
-end
 
 ------------------------------------------------------------------------------------------------------------------
 
@@ -940,49 +936,6 @@ end
 
 function FixEscapeCutscene()
 
-    StartCutscene = function(_Name, _Callback)
-
-        -- Remember callback
-        CutsceneCallback = _Callback
-    
-        -- -- Stop trigger system
-        -- Trigger.DisableTriggerSystem(1)
-    
-        -- Invulnerability for all entities
-        Logic.SetGlobalInvulnerability(1)
-    
-        --	forbid feedback sounds
-    
-        GUI.SetFeedbackSoundOutputState(0)
-    
-        -- no shapes during cutscene
-        Display.SetProgramOptionRenderOcclusionEffect(0)
-    
-        -- cutscene input mode
-        Input.CutsceneMode()
-    
-        -- Start cutscene
-        Cutscene.Start(_Name)
-    
-        assert(cutsceneIsActive ~= true)
-        cutsceneIsActive = true
-    
-        LocalMusic_UpdateMusic()
-    
-        --	backup
-        Cutscene.Effect = Sound.GetVolumeAdjustment(3)
-        Cutscene.Ambient = Sound.GetVolumeAdjustment(5)
-        Cutscene.Music = Music.GetVolumeAdjustment()
-    
-        --	half volume
-        Sound.SetVolumeAdjustment(3, Cutscene.Effect * 0.5)
-        Sound.SetVolumeAdjustment(5, Cutscene.Ambient * 0.5)
-        Music.SetVolumeAdjustment(Cutscene.Music * 0.5)
-    
-        --	stop feedback sounds
-        Sound.PlayFeedbackSound(0,0)
-    end
-
     function GameCallback_Escape()
         if IsBriefingActive == nil or not IsBriefingActive() then
             gvInterfaceCinematicSelectedEntites = {0}
@@ -1178,45 +1131,30 @@ end
 
 
 
-function CreateSyncEvent()
-    if CNetwork then
-        CNetwork.SetNetworkHandler("SyncCallback_StartOutpostUpgrade",
-            function(name, _PlayerID, _ScriptName, _Type, _Time)
-                if CNetwork.IsAllowedToManipulatePlayer(name, _PlayerID) then
-                    SyncCallback_StartOutpostUpgrade(_PlayerID, _ScriptName, _Type, _Time);
-                end;
+-- function CreateSyncEvent()
+--     if CNetwork then
+--         CNetwork.SetNetworkHandler("SyncCallback_StartOutpostUpgrade",
+--             function(name, _PlayerID, _ScriptName, _Type, _Time)
+--                 if CNetwork.IsAllowedToManipulatePlayer(name, _PlayerID) then
+--                     SyncCallback_StartOutpostUpgrade(_PlayerID, _ScriptName, _Type, _Time);
+--                 end;
+--             end
+--         );
+--     end;
+-- end
+
+
+function GetActivePlayers()
+    local Players = {};
+    if XNetwork.Manager_DoesExist() == 1 then
+        -- TODO: Does that fix everything for Community Server?
+        for i= 1, table.getn(Score.Player), 1 do
+            if Logic.PlayerGetGameState(i) == 1 then
+                table.insert(Players, i);
             end
-        );
-    end;
-end
-
-
-function CreateSyncEvents()
-    SyncEventID1 = Syncer.CreateEvent(DelayStrongerBarbarians1);
-    SyncEventID2 = Syncer.CreateEvent(DelayStrongerBarbarians2);
-
-    SyncEventID3 = Syncer.CreateEvent(DelayStrongerFolklungJob1);
-    SyncEventID4 = Syncer.CreateEvent(DelayStrongerFolklungJob2);
-
-    SyncEventID5 = Syncer.CreateEvent(DelayStrongerBandits1);
-    SyncEventID6 = Syncer.CreateEvent(DelayStrongerBandits2);
-
-    SyncEventID7 = Syncer.CreateEvent(DelayStrongerVargBar1);
-    SyncEventID8 = Syncer.CreateEvent(DelayStrongerVargBar2);
-
-    SyncEventID9 = Syncer.CreateEvent(SyncLeoBrief);
-    SyncEventID10 = Syncer.CreateEvent(SyncGuardBrief);
-
-    SyncEventOnPeaceTimeOver = Syncer.CreateEvent(SyncOnPeaceTimeOver);
-
-    SyncEventActivateArmys = Syncer.CreateEvent(ActivateSyncArmys);
-    SyncEventActivateModeSelectionArmys = Syncer.CreateEvent(ActivateSyncModeArmys);
-
-    SyncFinalArmy1 = Syncer.CreateEvent(SyncFinalFight1)
-    
-    SyncFinalArmy2 = Syncer.CreateEvent(SyncFinalFight2)
-     
-    SyncFinalArmy3 = Syncer.CreateEvent(SyncFinalFight3)
-
-    SyncFinaleKala = Syncer.CreateEvent(SyncKalaAttack)
+        end
+    else
+        table.insert(Players, GUI.GetPlayerID());
+    end
+    return Players;
 end

@@ -223,7 +223,7 @@ end
 function Treasure.Internal:OpenRandomResourceTreasure(_Index, _PlayerID)
     if self.Treasures[_Index] then
         local Data = self.Treasures[_Index];
-        local ResourceList = {"Gold", "Clay", "Wood", "Stone", "Iron", "Sulfur",nil,nil,nil,nil};
+        local ResourceList = {"Gold", "Clay", "Wood", "Stone", "Iron", "Sulfur"};
         local Index = math.random(1, 10);
         if ResourceList[Index] ~= nil then
             local Resource = ResourceType[ResourceList[Index]];

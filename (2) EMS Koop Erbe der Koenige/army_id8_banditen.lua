@@ -406,13 +406,10 @@ function ActivateBanditAttackers()
 
 
 
-	if table.getn(GetActivePlayers())>1 then
-		Syncer.InvokeEvent(SyncEventID5)
-		Syncer.InvokeEvent(SyncEventID6)
-	else
-		DelayStrongerBandits1()
-		DelayStrongerBandits2()
-	end
+	
+	DelayStrongerBandits1()
+	DelayStrongerBandits2()
+	
 
 	function BanditAttack1()
 		if IsExisting("B_Attack1") then

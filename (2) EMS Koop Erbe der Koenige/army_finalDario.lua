@@ -849,7 +849,7 @@ function SetupFinalFight3()
 	SetupDarioFinal3()
 end
 
-function SyncFinalFight3()
+function CreateFinalFight3()
 	ActivateBarmeciaFinal3()
 	ActivateFolklungFinal3()
 	ActivateOutpostFinal3()
