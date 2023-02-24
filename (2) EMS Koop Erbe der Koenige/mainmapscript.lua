@@ -47,10 +47,10 @@ function OnGameStart()
     ActivateTriggers()
 
     --Truhen
-    Treasure.RandomChest("chest1_1", 200, 800)
-    Treasure.RandomChest("chest1_2", 200, 800)
-    Treasure.RandomChest("chest2_1", 200, 800)
-    Treasure.RandomChest("chest2_2", 200, 800)
+    -- Treasure.RandomChest("chest1_1", 200, 800)
+    -- Treasure.RandomChest("chest1_2", 200, 800)
+    -- Treasure.RandomChest("chest2_1", 200, 800)
+    -- Treasure.RandomChest("chest2_2", 200, 800)
 
 
     --AI Setup
