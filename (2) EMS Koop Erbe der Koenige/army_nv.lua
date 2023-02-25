@@ -40,6 +40,19 @@ elseif CheckMode == 3 then
 		[8] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
 		[9] = 16	--SoldierAnzahl
 	}
+elseif CheckMode == 4 then
+	RespawnNV = 2 * 60
+	EvilTable = {
+		[1] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[2] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[3] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[4] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[5] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[6] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[7] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[8] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[9] = 16	--SoldierAnzahl
+	}
 end
 
 
@@ -226,5 +239,68 @@ function NVAttack8()
 end
 
 StartSimpleJob("NVAttack8")
+
+
+if CheckMode == 4 then
+
+	for i = 1,13,1 do
+		local pos = GetPosition("nv"..i)
+		Logic.CreateEntity(Entities.CB_Evil_Tower1,pos.X,pos.Y,0,16)
+	end
+	local posi = GetPosition("nvMain")
+	NVMain = Logic.CreateEntity(Entities.CB_RobberyTower1,posi.X,posi.Y,0,16)
+
+	RespawnNV = 2 * 60
+	SecretEvilTable = {
+		[1] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[2] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[3] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[4] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[5] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[6] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[7] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[8] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[9] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[10] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[11] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[12] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[13] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
+		[14] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
+		[15] = 16	--SoldierAnzahl
+	}
+
+
+
+
+
+	function NVAttack9()
+		if IsExisting(NVMain) then
+			local SpawnPos = GetPosition("NVMain_spawn")
+			if IsDestroyed("NV1_9") and IsDestroyed("NV2_9") and IsDestroyed("NV3_9") and IsDestroyed("NV4_9") and IsDestroyed("NV5_9") and IsDestroyed("NV6_9") and IsDestroyed("NV7_9") and IsDestroyed("NV8_9") and IsDestroyed("NV9_9") and IsDestroyed("NV10_9") and IsDestroyed("NV11_9") and IsDestroyed("NV12_9") and IsDestroyed("NV13_9") and IsDestroyed("NV14_9") then
+				if Counter.Tick2("NVAttackCount9", RespawnNV) then
+					for i = 1, 14 do
+						SetEntityName(AI.Entity_CreateFormation(16, EvilTable[i], nil, EvilTable[15], SpawnPos.X, SpawnPos.Y, 0, 1, 3
+							, 0), "NV"..i.."_9")
+						AddWaypoints("NV"..i.."_9", { "gatepos" })
+						AddWaypoints("NV"..i.."_9", { "Bar_Waypoint3" })
+						AddWaypoints("NV"..i.."_9", { "N_Waypoint1" })
+						AddWaypoints("NV"..i.."_9", { "iron_def_patrol1" })
+						AddWaypoints("NV"..i.."_9", { "N_Waypoint3" })
+						AddWaypoints("NV"..i.."_9", { "N_Waypoint4" })
+					end
+				end
+			end
+		end
+		if IsDead(NVMain) then
+			return true
+		end
+	end
+	
+	StartSimpleJob("NVAttack9")
+
+
+end
+
+
 
 end

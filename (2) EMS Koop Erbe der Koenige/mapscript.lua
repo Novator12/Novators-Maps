@@ -97,6 +97,7 @@ EMS_CustomMapConfig =
 		Script.Load(gvBasePath.. "army_finalBarmecia.lua");
 		Script.Load(gvBasePath.. "army_finalDario.lua");
 		Script.Load(gvBasePath.. "army_finalFolklung.lua");
+		Script.Load(gvBasePath.. "army_finalSecret.lua");
 		Script.Load(gvBasePath.. "army_nv.lua");
 		Script.Load(gvBasePath.. "daily_cycle.lua");
 		Script.Load(gvBasePath.. "daily_cycle_rain.lua");

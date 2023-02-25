@@ -42,7 +42,7 @@ function Erbe.SetupAI()
     end
 
 	--VargOutpost
-    MapEditor_SetupAI(15, CheckMode, 2000, 0, "VargPoint", 1, 0)
+    MapEditor_SetupAI(15, CheckMode, 4000, 0, "VargPoint", 1, 0)
     CountVar2 = 0
     for i=1,CheckMode do
         MapEditor_Armies[15][i+CountVar2].position	= GetPosition("VargPoint")

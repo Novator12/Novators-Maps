@@ -6,15 +6,15 @@
 function OnGameStart()
 
     if EMS.RD.Rules.GameMode.value == 1 then
-        EMS.RD.Rules.Peacetime.value = 62
+        EMS.RD.Rules.Peacetime.value = 64
         Erbe.Mode1()
         CheckMode = 1
     elseif EMS.RD.Rules.GameMode.value == 2 then
-        EMS.RD.Rules.Peacetime.value = 52
+        EMS.RD.Rules.Peacetime.value = 54
         Erbe.Mode2()
         CheckMode = 2
     else
-        EMS.RD.Rules.Peacetime.value = 42
+        EMS.RD.Rules.Peacetime.value = 44
         Erbe.Mode3()
         CheckMode = 3
     end
@@ -22,8 +22,10 @@ function OnGameStart()
     --DebugFuncs
     --Tools.ExploreArea(1,1,100000)
     --CLogic.SetAttractionLimitOffset(1,1000)
-    Syncer.Install()
 
+    Syncer.Install()
+    OverrideInteractionNPCCallback()
+    
     --Fix Escape during Cutscenes
     FixEscapeCutscene()
 
@@ -379,6 +381,7 @@ VillageCenterBuild2 = false
     local pos = GetPosition(_BuildingID2)
     local _,ent = Logic.GetEntitiesInArea(Entities.PB_VillageCenter1,pos.X,pos.Y,1000,1)
     if Logic.GetPlayerEntities(1, Entities.PB_VillageCenter1, 1) == 1 and VillageCenterBuild1 == false and Logic.IsConstructionComplete(ent) == 1 then
+        GUI.DestroyMinimapPulse(GetPosition("hq1").X,GetPosition("hq1").Y)
         Logic.SetPlayerPaysLeaderFlag(1, 1)
         VillageCenterBuild1 = true
         local PlayerName = UserTool_GetPlayerName(1);
@@ -387,6 +390,7 @@ VillageCenterBuild2 = false
         
     end
     if Logic.GetPlayerEntities(2, Entities.PB_VillageCenter1, 1) == 1 and VillageCenterBuild2 == false and Logic.IsConstructionComplete(ent) == 1 then
+        GUI.DestroyMinimapPulse(GetPosition("hq2").X,GetPosition("hq2").Y)
         Logic.SetPlayerPaysLeaderFlag(2, 1)
         VillageCenterBuild2 = true
         local PlayerName = UserTool_GetPlayerName(2);
@@ -1158,4 +1162,16 @@ function GetActivePlayers()
         table.insert(Players, GUI.GetPlayerID());
     end
     return Players;
+end
+
+function OverrideInteractionNPCCallback()
+    Orig_GameCallback_Logic_InteractWithCharacter = GameCallback_Logic_InteractWithCharacter;
+    GameCallback_Logic_InteractWithCharacter = function(_PlayerID, _HeroID, _NpcID)
+        -- Define the last hero and NPC for the other player.
+        local OtherPlayer = (_PlayerID == 1 and 2) or 1;
+        Interaction.Internal.LastInteractionHero[OtherPlayer] = _HeroID;
+        Interaction.Internal.LastInteractionNpc[OtherPlayer] = _NpcID;
+        -- Call original for NPC callback and stuff
+        Orig_GameCallback_Logic_InteractWithCharacter();
+    end
 end

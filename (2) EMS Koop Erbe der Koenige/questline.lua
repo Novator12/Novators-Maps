@@ -1,6 +1,9 @@
 function StartQuestline()
 
     --1. Quest 
+        Logic.AddQuest(1, 10, MAINQUEST_OPEN, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+        Logic.AddQuest(2, 10, MAINQUEST_OPEN, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+
         Logic.AddQuest(1, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
         Logic.AddQuest(2, 4, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
 
@@ -28,6 +31,16 @@ function StartQuestline()
 			Callback = ActivateDarioBrief })
 	NonPlayerCharacter.Activate("ari")
 
+    NonPlayerCharacter.Create(
+			{ScriptName = "miner",     
+			Callback = ActivateBomb1Brief()  })
+	NonPlayerCharacter.Activate("miner")
+
+    NonPlayerCharacter.Create(
+			{ScriptName = "legend",     
+			Callback = ActivateLegendBrief()  })
+	NonPlayerCharacter.Activate("legend")
+
 
     Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND,nil,"QuestlineHandler",1)
 end
@@ -47,6 +60,26 @@ function ActivateDarioBrief()
     StartDarioBrief(2,"DarioBrief")
 end
 
+function ActivateBomb1Brief()
+    StartBomb1Brief(1,"Bomb1Brief")
+    StartBomb1Brief(2,"Bomb1Brief")
+end
+
+function ActivateBomb2Brief()
+    StartBomb2Brief(1,"Bomb2Brief")
+    StartBomb2Brief(2,"Bomb2Brief")
+end
+
+function ActivateBomb3Brief()
+    StartBomb3Brief(1,"Bomb3Brief")
+    StartBomb3Brief(2,"Bomb3Brief")
+end
+
+function ActivateLegendBrief()
+    StartLegendBrief(1,"LegendBrief")
+    StartLegendBrief(2,"LegendBrief")
+end
+
 
 function QuestlineHandler()
     if BarmeciaFlag == true then
@@ -60,11 +93,16 @@ function QuestlineHandler()
         Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
         Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
 
+        Logic.AddQuest(1, 10, MAINQUEST_CLOSED, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+        Logic.AddQuest(2, 10, MAINQUEST_CLOSED, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+
         Logic.AddQuest(1, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
         Logic.AddQuest(2, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
 
         Logic.SetShareExplorationWithPlayerFlag(1, 3, 1)
         Logic.SetShareExplorationWithPlayerFlag(2, 3, 1)
+        Logic.SetShareExplorationWithPlayerFlag(1, 9, 1)
+        Logic.SetShareExplorationWithPlayerFlag(2, 9, 1)
         Logic.ForceFullExplorationUpdate()
         SetTableDiplomacyState(1, Player1State, BarmeciaState)
         SetTableDiplomacyState(1, Player2State, BarmeciaState)
@@ -93,6 +131,8 @@ function QuestlineHandler()
         UpgradeArmyAggressivness()
         SetupFinalFight1() 
         CreateFinalFight1()
+        StartSimpleJob("MinerCheck1")
+        StartSimpleJob("MinerCheck2")
         return true
     elseif FolklungFlag == true then
 
@@ -105,11 +145,18 @@ function QuestlineHandler()
         Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
         Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
 
+        Logic.AddQuest(1, 10, MAINQUEST_CLOSED, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+        Logic.AddQuest(2, 10, MAINQUEST_CLOSED, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+
         Logic.AddQuest(1, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
         Logic.AddQuest(2, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
 
         Logic.SetShareExplorationWithPlayerFlag(1, 4, 1)
         Logic.SetShareExplorationWithPlayerFlag(2, 4, 1)
+        Logic.SetShareExplorationWithPlayerFlag(1, 10, 1)
+        Logic.SetShareExplorationWithPlayerFlag(2, 10, 1)
+        Logic.SetShareExplorationWithPlayerFlag(1, 14, 1)
+        Logic.SetShareExplorationWithPlayerFlag(2, 14, 1)
         Logic.ForceFullExplorationUpdate()
         SetTableDiplomacyState(3, Player1State, BarmeciaState)
         SetTableDiplomacyState(3, Player2State, BarmeciaState)
@@ -138,6 +185,8 @@ function QuestlineHandler()
         UpgradeArmyAggressivness()
         SetupFinalFight2() 
         CreateFinalFight2()
+        StartSimpleJob("MinerCheck1")
+        StartSimpleJob("MinerCheck2")
         return true
     elseif DarioFlag == true then
 
@@ -150,11 +199,16 @@ function QuestlineHandler()
         Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
         Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
 
+        Logic.AddQuest(1, 10, MAINQUEST_CLOSED, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+        Logic.AddQuest(2, 10, MAINQUEST_CLOSED, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+
         Logic.AddQuest(1, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
         Logic.AddQuest(2, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
 
         Logic.SetShareExplorationWithPlayerFlag(1, 7, 1)
         Logic.SetShareExplorationWithPlayerFlag(2, 7, 1)
+        Logic.SetShareExplorationWithPlayerFlag(1, 12, 1)
+        Logic.SetShareExplorationWithPlayerFlag(2, 12, 1)
         Logic.ForceFullExplorationUpdate()
         SetTableDiplomacyState(3, Player1State, BarmeciaState)
         SetTableDiplomacyState(3, Player2State, BarmeciaState)
@@ -183,6 +237,63 @@ function QuestlineHandler()
         UpgradeArmyAggressivness()
         SetupFinalFight3() 
         CreateFinalFight3()
+        StartSimpleJob("MinerCheck1")
+        StartSimpleJob("MinerCheck2")
+        return true
+    elseif SecretFlag == true then
+
+        Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+        Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
+
+        Logic.AddQuest(1, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+        Logic.AddQuest(2, 5, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].."", ""..Erbe.Tables.PlayerInfos.Colors[4].." "..Erbe.Tables.PlayerInfos.Names[4].." @color:255,255,255 steht ebenfalls unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zu Salim und Pilgrim um mit Ihnen zu sprechen,", 1)
+
+        Logic.AddQuest(1, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+        Logic.AddQuest(2, 6, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
+
+        Logic.AddQuest(1, 10, MAINQUEST_CLOSED, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+        Logic.AddQuest(2, 10, MAINQUEST_CLOSED, "Info", "Es wird empfohlen, erst mit allen Kronenanwärtern zu sprechen, dies ist jedoch keine Pflicht. Vielleicht gibt es noch weitere Möglichkeiten. Denkt an das Landvolk!", 1)
+
+        Logic.AddQuest(1, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
+        Logic.AddQuest(2, 7, MAINQUEST_OPEN, "@color:65,105,225 Königsrennen", "Das Rennen um die Krone hat begonnen! Besiegt alle euch feindlich gesinnten Gegner und besteigt den Thron.", 1)
+
+        
+        SetTableDiplomacyState(3, Player1State, BarmeciaState)
+        SetTableDiplomacyState(3, Player2State, BarmeciaState)
+        SetTableDiplomacyState(3, Player1State, FolklungState)
+        SetTableDiplomacyState(3, Player2State, FolklungState)
+        SetTableDiplomacyState(3, Player1State, DarioState)
+        SetTableDiplomacyState(3, Player2State, DarioState)
+        SetTableDiplomacyState(1, BarmeciaState, DarioState)
+        SetTableDiplomacyState(1, BarmeciaState, FolklungState)
+        SetTableDiplomacyState(1, DarioState, FolklungState)
+        SetTableDiplomacyState(1, DarioState, RobberState)
+        SetTableDiplomacyState(1, BarmeciaState, RobberState)
+        SetTableDiplomacyState(1, FolklungState, RobberState)
+        SetTableDiplomacyState(1, FolklungState, VargState)
+        SetTableDiplomacyState(1, DarioState, VargState)
+        SetTableDiplomacyState(1, BarmeciaState, VargState)
+        
+        Gate_ID7_State = false
+        for i=1,9,1 do
+            DestroyEntity("block"..i)
+        end
+        ChangeKIBuildings()
+
+        for i =1,4,1 do
+            Logic.SetEntityInvulnerabilityFlag(GetID("id5_tower"..i.."_inv"),0)
+        end
+        for i =1,2,1 do
+            Logic.SetEntityInvulnerabilityFlag(GetID("id5_tent"..i.."_inv"),0)
+        end
+        Logic.SetEntityInvulnerabilityFlag(GetID("id4_claymine_inv"),0)
+        Logic.SetEntityInvulnerabilityFlag(GetID("FolklungCastle"),0)
+        VargGateFlag = true
+        UpgradeArmyAggressivness()
+        SetupFinalFight4() 
+        CreateFinalFight4()
+        StartSimpleJob("MinerCheck1")
+        StartSimpleJob("MinerCheck2")
         return true
     end
 end
@@ -194,16 +305,19 @@ function PayedBarmecia()
         Logic.RemoveTribute(1,TBar)
     end
     if TFolk then
-    Logic.RemoveTribute(1,TFolk)
+        Logic.RemoveTribute(1,TFolk)
     end
     if TDar then
-    Logic.RemoveTribute(1,TDar)
+        Logic.RemoveTribute(1,TDar)
+    end
+    if TLeg then
+        Logic.RemoveTribute(1,TLeg)
     end
     GUIAction_ToggleMenu( gvGUI_WidgetID.TradeWindow,0)
     NonPlayerCharacter.Deactivate("BarmeciaMayor")
     NonPlayerCharacter.Deactivate("salim")
     NonPlayerCharacter.Deactivate("ari")
-
+    ReplaceEntity("Cathedral",Entities.PB_Monastery3)
     Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND,nil,"VictoryHandler",1)
 
 end
@@ -218,6 +332,9 @@ function PayedFolklung()
     end
     if TDar then
     Logic.RemoveTribute(1,TDar)
+    end
+    if TLeg then
+        Logic.RemoveTribute(1,TLeg)
     end
     GUIAction_ToggleMenu( gvGUI_WidgetID.TradeWindow,0)
     NonPlayerCharacter.Deactivate("BarmeciaMayor")
@@ -239,6 +356,9 @@ function PayedDario()
     if TDar then
     Logic.RemoveTribute(1,TDar)
     end
+    if TLeg then
+        Logic.RemoveTribute(1,TLeg)
+    end
     GUIAction_ToggleMenu( gvGUI_WidgetID.TradeWindow,0)
     NonPlayerCharacter.Deactivate("BarmeciaMayor")
     NonPlayerCharacter.Deactivate("salim")
@@ -247,6 +367,54 @@ function PayedDario()
     Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND,nil,"VictoryHandler",1)
 
 end
+
+
+function PayedLegend()
+    if TBar then
+        Logic.RemoveTribute(1,TBar)
+    end
+    if TFolk then
+    Logic.RemoveTribute(1,TFolk)
+    end
+    if TDar then
+    Logic.RemoveTribute(1,TDar)
+    end
+    if TLeg then
+        Logic.RemoveTribute(1,TLeg)
+    end
+    GUIAction_ToggleMenu( gvGUI_WidgetID.TradeWindow,0)
+    NonPlayerCharacter.Deactivate("BarmeciaMayor")
+    NonPlayerCharacter.Deactivate("salim")
+    NonPlayerCharacter.Deactivate("ari")
+
+    StartSecretQuestBrief(1,"SecQuestBrief")
+    StartSecretQuestBrief(2,"SecQuestBrief")
+
+end
+
+function MinerCheck1()
+    if MinerState == 1 and IsNear("miner","miner_spot",300) then
+        NonPlayerCharacter.Create(
+			{ScriptName = "miner",     
+			Callback = ActivateBomb2Brief()  })
+	    NonPlayerCharacter.Activate("miner")
+        return true
+    end
+end
+
+function MinerCheck2()
+    if MinerState == 2 and IsNear("miner","miner_spot",300) then
+        NonPlayerCharacter.Create(
+			{ScriptName = "miner",     
+			Callback = ActivateBomb3Brief()  })
+	    NonPlayerCharacter.Activate("miner")
+        return true
+    end
+end
+      
+
+
+
 
 SecretFlag = false
 
@@ -281,7 +449,11 @@ function VictoryHandler()
         and IsDestroyed("id7_archery2")
         and IsDestroyed("id7_kanonen")
         and IsDestroyed("OKC") then
-             CreateKalaAttack()
+            Kala = Logic.CreateEntity(Entities.CU_Evil_Queen,GetPosition("secret_attack8").X,GetPosition("secret_attack8").Y,0,16)
+            StartKalaBrief(1,"KalaBrief")
+            StartKalaBrief(2,"KalaBrief")
+            CreateKalaAttack()
+            return true
         end
     elseif FolklungFlag == true then
         if IsDestroyed("VargCastle") 
@@ -307,7 +479,11 @@ function VictoryHandler()
         and IsDestroyed("BarArchery")
         and IsDestroyed("BarKaserne")
         and IsDestroyed("BarReiter") then
+            Kala = Logic.CreateEntity(Entities.CU_Evil_Queen,GetPosition("secret_attack8").X,GetPosition("secret_attack8").Y,0,16)
+            StartKalaBrief(1,"KalaBrief")
+            StartKalaBrief(2,"KalaBrief")
             CreateKalaAttack()
+            return true
         end
     elseif DarioFlag == true then
         if IsDestroyed("VargCastle") 
@@ -337,7 +513,11 @@ function VictoryHandler()
         and IsDestroyed("id4_kaserne3") 
         and IsDestroyed("id4_archery")
         and IsDestroyed("id4_reiter") then
+            Kala = Logic.CreateEntity(Entities.CU_Evil_Queen,GetPosition("secret_attack8").X,GetPosition("secret_attack8").Y,0,16)
+            StartKalaBrief(1,"KalaBrief")
+            StartKalaBrief(2,"KalaBrief")
             CreateKalaAttack()
+            return true
         end
     elseif SecretFlag == true then
         if IsDestroyed("VargCastle") 
@@ -375,7 +555,12 @@ function VictoryHandler()
         and IsDestroyed("id7_archery2")
         and IsDestroyed("id7_kanonen")
         and IsDestroyed("OKC") then
+            CheckMode = 4;
+            Kala = Logic.CreateEntity(Entities.CU_Evil_Queen,GetPosition("secret_attack8").X,GetPosition("secret_attack8").Y,0,16)
+            StartKalaBrief(1,"KalaBrief")
+            StartKalaBrief(2,"KalaBrief")
             CreateKalaAttack()
+            return true
         end
     end
 
@@ -385,6 +570,7 @@ function CreateKalaAttack()
     Logic.SetPlayerRawName(16, "Kala")
 	Logic.SetPlayerName(16, "Kala")
     Display.SetPlayerColorMapping(16, 2)
+    Logic.GroupAttackMove(Kala,GetPosition("hq2").X,GetPosition("hq2").Y,nil)
 	for i=1,8,1 do
 		for j=1,2,1 do 
 			local pos = GetPosition("secretdef"..i.."_"..j)

@@ -2,6 +2,8 @@
 
 function BeginBriefing(_playerID,_Name)
 
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+
 	local briefing = {
 		DisableSkipping = true,
 		RestoreCamera = true,
@@ -117,12 +119,7 @@ function BeginBriefing(_playerID,_Name)
 	
 	briefing.Starting = function() end
 	briefing.Finished = function()
-		if _playerID == 1 then
-			Camera.ScrollSetLookAt(GetPosition("helias").X,GetPosition("helias").Y)
-		end
-		if _playerID == 2 then
-			Camera.ScrollSetLookAt(GetPosition("kerberos").X,GetPosition("kerberos").Y)
-		end
+		Camera.ScrollSetLookAt(GetPosition(gvLastInteractionHeroName).X,GetPosition(gvLastInteractionHeroName).Y)
 	end
 	return BriefingSystem.Start(_playerID, _Name, briefing)
 end
@@ -458,35 +455,35 @@ function StartBarmeciaMayorBrief(_playerID,_Name)
 
 	AP{
 		Title    = "@color:255,255,0 @center Bürgermeister von Barmecia",
-        Text     = "@color:255,0,0 Guten Tag {n:"..gvLastInteractionHeroName.."}, ich habe lange nichts mehr von euch gehört. Wir brauchen dringend eure Hilfe!",
+        Text     = "@color:255,255,255 Guten Tag {n:"..gvLastInteractionHeroName.."}, ich habe lange nichts mehr von euch gehört. Wir brauchen dringend eure Hilfe!",
         Target   = "BarmeciaMayor",
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
-        Text     = "@color:255,0,0 Hallo Bürgermeister, wie können wir "..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,0,0 helfen.",
+        Text     = "@color:255,255,255 Hallo Bürgermeister, wie können wir "..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 helfen.",
         Target   = gvLastInteractionHeroName,
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Bürgermeister von Barmecia",
-        Text     = "@color:255,0,0 Unser Dom wurde durch die vielen Angriffe von Vargs Schergen wieder zerstört. Wir konnten die Baustelle absichern, jedoch fehlen uns die Ressourcen um den Bau zu vollenden.",
+        Text     = "@color:255,255,255 Unser Dom wurde durch die vielen Angriffe von Vargs Schergen wieder zerstört. Wir konnten die Baustelle absichern, jedoch fehlen uns die Ressourcen um den Bau zu vollenden.",
         Target   = "BarmeciaMayor",
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
-        Text     = "@color:255,0,0 Was braucht Ihr denn für den Bau?",
+        Text     = "@color:255,255,255 Was braucht Ihr denn für den Bau?",
         Target   = gvLastInteractionHeroName,
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Bürgermeister von Barmecia",
-        Text     = "@color:255,0,0 Wir benötigen 10.000 @color:139,140,122 Steine @color:255,255,255 und 5.000 @color:139,90,43 Holz. @color:255,255,255 Beachtet jedoch, wenn Ihr den Dom errichtet, dass die anderen Regenten euch den Krieg erklären.",
+        Text     = "@color:255,255,255 Wir benötigen 10.000 @color:139,140,122 Steine @color:255,255,255 und 5.000 @color:139,90,43 Holz. @color:255,255,255 Beachtet jedoch, wenn Ihr den Dom errichtet, dass die anderen Regenten euch den Krieg erklären.",
         Target   = "BarmeciaMayor",
         MiniMap = false,
         
@@ -539,28 +536,28 @@ function StartFolklungBrief(_playerID,_Name)
 
 	AP{
 		Title    = "@color:255,255,0 @center Salim",
-        Text     = "@color:255,0,0 Ich grüße dich {n:"..gvLastInteractionHeroName.."}, wir stehen kurz vor der Auslöschung. Könnt Ihr uns helfen die Blockade der Barbaren zu durchbrechen?",
+        Text     = "@color:255,255,255 Ich grüße dich {n:"..gvLastInteractionHeroName.."}, wir stehen kurz vor der Auslöschung. Könnt Ihr uns helfen die Blockade der Barbaren zu durchbrechen?",
         Target   = "salim",
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
-        Text     = "@color:255,0,0 Hallo Salim, Hallo Pilgrim, was bietet Ihr uns denn, wenn wir euch helfen?",
+        Text     = "@color:255,255,255 Hallo Salim, Hallo Pilgrim, was bietet Ihr uns denn, wenn wir euch helfen?",
         Target   = gvLastInteractionHeroName,
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Pilgrim",
-        Text     = "@color:255,0,0 Auch ich grüße euch, wenn Ihr uns helft, unterstützen wir euch im Kampf um die Krone. Jedoch werden die anderen Anwärter das nicht für Gut heißen.",
+        Text     = "@color:255,255,255 Auch ich grüße euch, wenn Ihr uns helft, unterstützen wir euch im Kampf um die Krone. Jedoch werden die anderen Anwärter das nicht für Gut heißen.",
         Target   = "pilgrim",
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
-        Text     = "@color:255,0,0 Verstanden, wir werden es uns überlegen. Unsere Entscheidung schicken wir euch bald zu. !(Schaut ins Tributmenü)!",
+        Text     = "@color:255,255,255 Verstanden, wir werden es uns überlegen. Unsere Entscheidung schicken wir euch bald zu. !(Schaut ins Tributmenü)!",
         Target   = gvLastInteractionHeroName,
         MiniMap = false,
         
@@ -614,28 +611,28 @@ function StartDarioBrief(_playerID,_Name)
 
 	AP{
 		Title    = "@color:255,255,0 @center Ari",
-        Text     = "@color:255,0,0 {n:"..gvLastInteractionHeroName.."}, schön, dass Ihr nach so langer Zeit vorbei schaut. Wir befinden uns gerade in einer brenzlichen Lage!",
+        Text     = "@color:255,255,255 {n:"..gvLastInteractionHeroName.."}, schön, dass Ihr nach so langer Zeit vorbei schaut. Wir befinden uns gerade in einer brenzlichen Lage!",
         Target   = "ari",
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
-        Text     = "@color:255,0,0 Hallo Ari, Servus Drake, wir haben schon bemerkt, dass euch die Banditen gut zusetzen.",
+        Text     = "@color:255,255,255 Hallo Ari, Servus Drake, wir haben schon bemerkt, dass euch die Banditen gut zusetzen.",
         Target   = gvLastInteractionHeroName,
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center Drake",
-        Text     = "@color:255,0,0 Genau! Wenn Ihr uns finanzielle Unterstützunh bietet, werden wir euch bei der Besteigung des Trons helfen. Das wird jedoch den anderen Anwärtern nicht gefallen.",
+        Text     = "@color:255,255,255 Genau! Wenn Ihr uns finanzielle Unterstützung bietet, werden wir euch bei der Besteigung des Trons helfen. Das wird jedoch den anderen Anwärtern nicht gefallen.",
         Target   = "drake",
         MiniMap = false,
         
 	}
 	AP{
 		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
-        Text     = "@color:255,0,0 Verstanden, wir werden es uns überlegen. Unsere Entscheidung schicken wir euch bald zu. !(Schaut ins Tributmenü)!",
+        Text     = "@color:255,255,255 Verstanden, wir werden es uns überlegen. Unsere Entscheidung schicken wir euch bald zu. !(Schaut ins Tributmenü)!",
         Target   = gvLastInteractionHeroName,
         MiniMap = false,
         
@@ -668,3 +665,603 @@ function TributDario()
     TrDar.Callback = PayedDario
     TDar = AddTribute(TrDar)
 end
+
+
+
+function StartKalaBrief(_playerID,_Name)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Kala",
+        Text     = "@color:255,0,0 Hahahaha, ich werde euch zeigen, wer der Krone würdig ist.",
+        Target   = Kala,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Kala",
+        Text     = "@color:255,0,0 Angriff, meine Kinder!",
+        Target   = Kala,
+        MiniMap = false,
+        
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function() end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+
+BriefCountBomb1 = 0
+
+function StartBomb1Brief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("miner",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Miner",
+        Text     = "@color:255,255,255 Guten Tag {n:"..gvLastInteractionHeroName.."}, ich kann euch anbieten für einen kleinen Obulus Minen frei zu sprengen.",
+        Target   = "miner",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Das hört sich gut an. Welche Mine willst du uns denn frei sprengen?",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Miner",
+        Text     = "@color:255,255,255 Ich sprenge euch diese Mine als erstes frei. Schaut in euer @color:127,255,0 Tributmenü.",
+        Target   = "bomb1",
+        MiniMap = true,
+        
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function()
+		BriefCountBomb1 = BriefCountBomb1 + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobBomb1()
+	if BriefCountBomb1 == 2 then
+		TributBomb1()
+		MinerState = 0
+		return true
+	end
+end
+StartSimpleJob("CounterJobBomb1")
+
+function TributBomb1()
+    local TrB1 =  {}
+    TrB1.pId = 1
+    TrB1.text = "Sprengt für 500 Taler und 500 Schwefel die Mine frei!"
+    TrB1.cost = { Gold = 500, Sulfur = 500 }
+    TrB1.Callback = PayedMiner1
+    TB1 = AddTribute(TrB1)
+end
+
+function PayedMiner1()
+	StartSimpleJob("DetonateMine1")
+	Move("miner",GetPosition("bomb1"),50)
+end
+
+
+function DetonateMine1()
+	if IsNear("miner","bomb1",150) then
+		CreateEntity(0,Entities.XD_Bomb1,GetPosition("bomb1"))
+		Move("miner",GetPosition("miner_spot"),50)
+		MinerState = 1
+		return true
+	end
+end
+
+BriefCountBomb2 = 0
+
+function StartBomb2Brief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("miner",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Miner",
+        Text     = "@color:255,255,255 Hallo {n:"..gvLastInteractionHeroName.."}, soll ich euch eine weitere Mine frei sprengen?",
+        Target   = "miner",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Kommt ganz auf dein Angebot an. Welche wäre denn die nächste Mine?",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Miner",
+        Text     = "@color:255,255,255 Das wäre diese hier. Schaut in euer @color:127,255,0 Tributmenü.",
+        Target   = "bomb2",
+        MiniMap = true,
+        
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function()
+		BriefCountBomb2 = BriefCountBomb2 + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobBomb2()
+	if BriefCountBomb2 == 2 then
+		TributBomb2()
+		return true
+	end
+end
+StartSimpleJob("CounterJobBomb2")
+
+function TributBomb2()
+    local TrB2 =  {}
+    TrB2.pId = 1
+    TrB2.text = "Sprengt für 500 Taler und 500 Schwefel die Mine frei!"
+    TrB2.cost = { Gold = 500, Sulfur = 500 }
+    TrB2.Callback = PayedMiner1
+    TB2 = AddTribute(TrB2)
+end
+
+function PayedMiner2()
+	StartSimpleJob("DetonateMine2")
+	Move("miner",GetPosition("bomb2"),50)
+end
+
+
+function DetonateMine2()
+	if IsNear("miner","bomb2",150) then
+		CreateEntity(0,Entities.XD_Bomb1,GetPosition("bomb2"))
+		Move("miner",GetPosition("miner_spot"),50)
+		MinerState = 2
+		return true
+	end
+end
+
+
+BriefCountBomb3 = 0
+
+function StartBomb3Brief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("miner",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Miner",
+        Text     = "@color:255,255,255 Und nochmals Hallo lieber {n:"..gvLastInteractionHeroName.."}, wenn Ihr möchtet sprenge ich euch die letzte Mine frei.",
+        Target   = "miner",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Hmmm, das muss ich mir überlegen. Wo befindet sie sich denn?",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Miner",
+        Text     = "@color:255,255,255 Genau hier. Schaut in euer @color:127,255,0 Tributmenü.",
+        Target   = "bomb3",
+        MiniMap = true,
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function()
+		BriefCountBomb3 = BriefCountBomb3 + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobBomb3()
+	if BriefCountBomb3 == 2 then
+		TributBomb3()
+		return true
+	end
+end
+StartSimpleJob("CounterJobBomb3")
+
+
+function TributBomb3()
+    local TrB3 =  {}
+    TrB3.pId = 1
+    TrB3.text = "Sprengt für 500 Taler und 500 Schwefel die Mine frei!"
+    TrB3.cost = { Gold = 500, Sulfur = 500 }
+    TrB3.Callback = PayedMiner1
+    TB3 = AddTribute(TrB3)
+end
+
+function PayedMiner3()
+	StartSimpleJob("DetonateMine3")
+	Move("miner",GetPosition("bomb3"),50)
+end
+
+
+function DetonateMine3()
+	if IsNear("miner","bomb3",150) then
+		CreateEntity(0,Entities.XD_Bomb1,GetPosition("bomb3"))
+		Move("miner",GetPosition("miner_spot"),50)
+		MinerState = 3
+		return true
+	end
+end
+
+
+
+
+BriefCountLegend = 0
+
+function StartLegendBrief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("legend",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Grüzi {n:"..gvLastInteractionHeroName.."}, hat der Herr einen moment Zeit für einen armen Händler?",
+        Target   = "legend",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Hmmm, na gut, was gibt es denn?",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Diese Schergen von Banditen haben meine Missi entführt. Wenn Ihr Sie mir zurück bringt werde ich euch entlohnen. Bitte Ihr müsst mir helfen.",
+        Target   = "legend",
+        MiniMap = false,
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Ich kann euch nichts versprechen, aber wir werden Ausschau nach Missi halten. Hat deine Missi irgendwelche besonderen Merkmale.",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Vielen Dank. Ja, sie kann manchmal etwas bockig sein und ist oft schwarz gekleidet.",
+        Target   = "legend",
+        MiniMap = false,
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function()
+		BriefCountLegend = BriefCountLegend + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobLegend()
+	if BriefCountLegend == 2 then
+		Logic.AddQuest(1, 9, MAINQUEST_OPEN, "@color:155,155,0 Missi", "Findet Missi und bringt Sie zurück zum Händler!", 1)
+		Logic.AddQuest(2, 9, MAINQUEST_OPEN, "@color:155,155,0 Missi", "Findet Missi und bringt Sie zurück zum Händler!", 1)
+		Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND,nil,"MissiHandler",1)
+		return true
+	end
+end
+StartSimpleJob("CounterJobLegend")
+
+
+function MissiHandler()
+	if IsNear("legend_sheep","legend",300) and DarioFlag == false and BarmeciaFlag == false and FolklungFlag ==  false then
+		NonPlayerCharacter.Create(
+			{ScriptName = "legend",     
+			Callback = ActivateLegendFinishBrief()  })
+		NonPlayerCharacter.Activate("legend")
+		return true
+	end
+	if IsNear("legend_sheep","legend",300) and (DarioFlag == true or BarmeciaFlag == true or FolklungFlag ==  true) then
+		NonPlayerCharacter.Create(
+			{ScriptName = "legend",     
+			Callback = ActivateLegendFailedBrief()  })
+		NonPlayerCharacter.Activate("legend")
+		return true
+	end
+	if IsNear("helias","legend_sheep",1000) then
+		local pos = GetPosition("helias") 
+		Move("legend_sheep",pos)
+	end
+	if IsNear("kerberos","legend_sheep",1000) then
+		local pos = GetPosition("kerberos") 
+		Move("legend_sheep",pos)
+	end
+end
+
+
+function ActivateLegendFinishBrief()
+	StartLegendFinishBrief(1,"LegFinBrief")
+	StartLegendFinishBrief(2,"LegFinBrief")
+end
+
+function ActivateLegendFailedBrief()
+	StartLegendFailedBrief(1,"LegFinBrief")
+	StartLegendFailedBrief(2,"LegFinBrief")
+end
+
+
+
+BriefCountLegendFinish = 0
+
+function StartLegendFinishBrief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("legend",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Ihr habt meine Missi gefunden! DANKE!!!",
+        Target   = "legend",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Du hättest uns mal direkt sagen können, dass Missi ein Schaf ist...",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Missi",
+        Text     = "@color:255,255,255 Määäääh",
+        Target   = "legend_sheep",
+        MiniMap = false,
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Ja, da magst du Recht haben. Aber nun zu eurer Belohnung. Ich kann euch die Krone von Dario besorgen. Ich bin eigentlich ein Undercover-Schmuggler.",
+        Target   = "legend",
+        MiniMap = false,
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Und das sollen wir glauben?",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Na klar. Also wenn Ihr schnell Könige werden wollt, dann bestätigt mir den Auftrag in eurem Tributmenü und ich mache mich auf den Weg!",
+        Target   = "legend",
+        MiniMap = false,
+	}
+	
+	briefing.Starting = function() end
+	briefing.Finished = function()
+		BriefCountLegendFinish = BriefCountLegendFinish + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobLegendFinish()
+	if BriefCountLegendFinish == 2 then
+		TributLegend()
+		return true
+	end
+end
+StartSimpleJob("CounterJobLegendFinish")
+
+
+function TributLegend()
+    local TrLeg =  {}
+    TrLeg.pId = 1
+    TrLeg.text = "Lasst euch vom Händler die Krone beschaffen. (Legendär)"
+    TrLeg.cost = { Gold = 0 }
+    TrLeg.Callback = PayedLegend
+    TLeg = AddTribute(TrLeg)
+end
+
+
+
+
+
+
+function StartLegendFailedBrief(_playerID,_Name)
+
+	local gvLastInteractionHeroName = Interaction.Hero(_playerID)
+	LookAt("legend",gvLastInteractionHeroName)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Ihr habt meine Missi gefunden! DANKE!!!",
+        Target   = "legend",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Du hättest uns mal direkt sagen können, dass Missi ein Schaf ist...",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Missi",
+        Text     = "@color:255,255,255 Määäääh",
+        Target   = "legend_sheep",
+        MiniMap = false,
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Leider kann ich euch nicht belohnen, da durch die politische Lage, alle meine Waren konfisziert wurden.",
+        Target   = "legend",
+        MiniMap = false,
+	}
+	AP{
+		Title    = "@color:255,255,0 @center {n:"..gvLastInteractionHeroName.."}",
+        Text     = "@color:255,255,255 Na toll, danke für garnichts!",
+        Target   = gvLastInteractionHeroName,
+        MiniMap = false,
+        
+	}
+	
+	
+	briefing.Starting = function() end
+	briefing.Finished = function() end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+SecretQuestCount = 0
+
+function StartSecretQuestBrief(_playerID,_Name)
+
+	Move("legend","legend_pos",50)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Ich mach mich nun auf den Weg, um die Krone zu besorgen. Barmecia hat Sie in der Schatzkammer gebunkert. Durch meine Connections sollte es mir aber ein leichtes sein dort rein zu kommen.",
+        Target   = "legend",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 So gleich hier hinten ist der Eingang in die Bank, dort sollte ich wohl fündig werden.",
+        Target   = "legend",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Wache",
+        Text     = "@color:255,255,255 Halt du Dieb!!! Sofort stehen bleiben!",
+        Target   = "guard1",
+        MiniMap = false,
+		Action = function() Move("guard1","legend",100) Move("guard2","legend",100) end,
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Wache",
+        Text     = "@color:255,255,255 Du wirst lange hinter Gittern sitzen!",
+        Target   = "guard2",
+        MiniMap = false,
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Mysteriöser Händler",
+        Text     = "@color:255,255,255 Hilfe, Missi!! Ich habe doch garnichts gemacht. Das waren dieser Helias und Kerberos...Die haben mich beauftragt die Krone zu stehlen.",
+        Target   = "legend",
+        MiniMap = false,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Info",
+        Text     = "@color:255,255,255 Durch den Versuch die Krone auf nicht legitime Weise zu bekommen, erklären euch alle Kronenanwärter den Krieg. Viel Glück!",
+        Target   = "legend",
+        MiniMap = false,
+        
+	}
+	
+	
+	briefing.Starting = function() end
+	briefing.Finished = function() 
+		SecretQuestCount = SecretQuestCount + 1
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+function CounterJobSecretQuest()
+	if SecretQuestCount == 2 then
+		DestroyEntity("legend")
+		DestroyEntity("guard1")
+		DestroyEntity("guard2")
+		SecretFlag = true
+		Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND,nil,"VictoryHandler",1)
+		return true
+	end
+end
+StartSimpleJob("CounterJobSecretQuest")
