@@ -128,7 +128,7 @@ function BarmeciaHandler()
 
 	Ent2 = nil
 
-	if BarmeciaFlag == true then
+	if BarmeciaFlag == true or FolklungFlag == true or DarioFlag == true or SecretFlag == true then
 		return true
 	end
 
@@ -183,7 +183,7 @@ function FolklungHandler()
 
 	Ent2 = nil
 
-	if FolklungFlag == true then
+	if BarmeciaFlag == true or FolklungFlag == true or DarioFlag == true or SecretFlag == true then
 		return true
 	end
 end
@@ -235,7 +235,7 @@ function DarioHandler()
 
 	Ent2 = nil
 
-	if DarioFlag == true then
+	if BarmeciaFlag == true or FolklungFlag == true or DarioFlag == true or SecretFlag == true then
 		return true
 	end
 end

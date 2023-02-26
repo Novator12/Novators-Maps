@@ -115,6 +115,13 @@ function BeginBriefing(_playerID,_Name)
         MiniMap = false,
 		FadeOut = 4
 	}
+	AP{
+		Title    = "@color:255,0,0 @center Warnung",
+        Text     = "@color:255,255,255 In dieser Region gilt ein @color:0,255,0 Boten-Abkommen, @color:255,255,255 was bedeutet, dass nur Helden in die Königreiche von neutralen Regenten eintreten dürfen. @color:255,0,0 Andernfalls wird sofort Krieg erklärt!",
+        Target   = "kerb_spot",
+        MiniMap = false,
+		FadeOut = 4
+	}
 
 	
 	briefing.Starting = function() end
