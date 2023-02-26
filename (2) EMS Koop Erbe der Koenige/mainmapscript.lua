@@ -1,7 +1,7 @@
 -- Hier kommen meine Funktionen rein, die nach den Regeleinstellungen ausgeführt
 -- werden sollen. Sind Regeln fest, dann wird es sofort ausgeführt.
 
-    VersionCheck = 1.6
+    VersionCheck = 1.7
 
 function OnGameStart()
 
@@ -259,8 +259,8 @@ function OnPeacetimeOver()
 	StartSimpleJob("NorfolkAttack2")
     DelayStrongerNorfolk1()
     DelayStrongerNorfolk2()
-    DelayStrongerBarmeica1()
-    DelayStrongerBarmeica2()
+    DelayStrongerBarmecia1()
+    DelayStrongerBarmecia2()
     ReplaceEntity("sp1_gate",Entities.XD_PalisadeGate2)
     Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
     Logic.AddQuest(2, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)

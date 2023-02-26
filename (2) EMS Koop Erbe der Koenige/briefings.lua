@@ -113,7 +113,6 @@ function BeginBriefing(_playerID,_Name)
         Text     = "@color:255,255,255 Ziel: Vernichtet eure Gegner und bestreitet den Weg zum absoluten Herrscher über das Königreich. @color:255,0,0 Achtung: @color:255,255,255  Eure taten haben Einfluss auf die Beziehungen zu den einzelnen Kronenanwärtern.",
         Target   = "kerb_spot",
         MiniMap = false,
-		FadeOut = 4
 	}
 	AP{
 		Title    = "@color:255,0,0 @center Warnung",

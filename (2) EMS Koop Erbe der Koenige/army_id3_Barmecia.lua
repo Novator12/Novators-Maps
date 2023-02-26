@@ -1,58 +1,10 @@
+BarStrenght = 1
+RespawnBar = 60
 function ActivateBarmeciaAttackers()
 
-	RespawnBar = 60
-
-
+	
 
 	--BarmeciaAttack
-
-	BarStrenght = 1
-
-
-	function StrongerBarmeciaJob1()
-		if IsExisting("BarKaserne") or IsExisting("BarArchery") or IsExisting("BarReiter") or IsExisting("BarKanonen") then
-			Message("@color:255,0,0 Achtung: @color:255,255,255 Barmecia hat aufgerüstet!")
-			BarStrenght = 2
-		end
-	end
-
-	function StrongerBarmeciaJob2()
-		if IsExisting("BarKaserne") or IsExisting("BarArchery") or IsExisting("BarReiter") or IsExisting("BarKanonen")   then
-			Message("@color:255,0,0 Achtung: @color:255,255,255 Barmecia hat aufgerüstet!")
-			BarStrenght = 3
-		end
-	end
-
-
-	function DelayStrongerBarmeica1()
-
-		if CheckMode == 1 then
-			 Bar1 = 30 * 60
-		elseif CheckMode == 2 then
-			Bar1 = 25 * 60
-		elseif CheckMode == 3 then
-			Bar1 = 20 * 60
-		end
-
-		StartCountdown(Bar1,StrongerBarmeciaJob1,false)
-	end
-
-
-	function DelayStrongerBarmeica2()
-
-		if CheckMode == 1 then
-			Bar2 = 60 * 60
-	   elseif CheckMode == 2 then
-			Bar2 = 50 * 60
-	   elseif CheckMode == 3 then
-			Bar2 = 40 * 60
-	   end
-
-		StartCountdown(Bar2, StrongerBarmeciaJob2, false)
-	end
-
-
-
 
 	function BarmeciaFight1()
 		if IsExisting("BarKaserne") then
@@ -213,3 +165,44 @@ function ActivateBarmeciaAttackers()
 end
 
 
+function StrongerBarmeciaJob1()
+	if IsExisting("BarKaserne") or IsExisting("BarArchery") or IsExisting("BarReiter") or IsExisting("BarKanonen") then
+		Message("@color:255,0,0 Achtung: @color:255,255,255 Barmecia hat aufgerüstet!")
+		BarStrenght = 2
+	end
+end
+
+function StrongerBarmeciaJob2()
+	if IsExisting("BarKaserne") or IsExisting("BarArchery") or IsExisting("BarReiter") or IsExisting("BarKanonen")   then
+		Message("@color:255,0,0 Achtung: @color:255,255,255 Barmecia hat aufgerüstet!")
+		BarStrenght = 3
+	end
+end
+
+
+function DelayStrongerBarmecia1()
+
+	if CheckMode == 1 then
+		 Bar1 = 30 * 60
+	elseif CheckMode == 2 then
+		Bar1 = 25 * 60
+	elseif CheckMode == 3 then
+		Bar1 = 20 * 60
+	end
+
+	StartCountdown(Bar1,StrongerBarmeciaJob1,false)
+end
+
+
+function DelayStrongerBarmecia2()
+
+	if CheckMode == 1 then
+		Bar2 = 60 * 60
+   elseif CheckMode == 2 then
+		Bar2 = 50 * 60
+   elseif CheckMode == 3 then
+		Bar2 = 40 * 60
+   end
+
+	StartCountdown(Bar2, StrongerBarmeciaJob2, false)
+end
