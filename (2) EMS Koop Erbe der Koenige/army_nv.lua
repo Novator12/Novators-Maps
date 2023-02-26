@@ -249,8 +249,8 @@ if CheckMode == 4 then
 	end
 	local posi = GetPosition("nvMain")
 	NVMain = Logic.CreateEntity(Entities.CB_RobberyTower1,posi.X,posi.Y,0,16)
-
-	RespawnNV = 2 * 60
+	--Skriptname
+	SecretRespawnNV = 2 * 60
 	SecretEvilTable = {
 		[1] = Entities.CU_Evil_LeaderBearman1, --Truppentyp
 		[2] = Entities.CU_Evil_LeaderSkirmisher1, --Truppentyp
@@ -277,9 +277,9 @@ if CheckMode == 4 then
 		if IsExisting(NVMain) then
 			local SpawnPos = GetPosition("NVMain_spawn")
 			if IsDestroyed("NV1_9") and IsDestroyed("NV2_9") and IsDestroyed("NV3_9") and IsDestroyed("NV4_9") and IsDestroyed("NV5_9") and IsDestroyed("NV6_9") and IsDestroyed("NV7_9") and IsDestroyed("NV8_9") and IsDestroyed("NV9_9") and IsDestroyed("NV10_9") and IsDestroyed("NV11_9") and IsDestroyed("NV12_9") and IsDestroyed("NV13_9") and IsDestroyed("NV14_9") then
-				if Counter.Tick2("NVAttackCount9", RespawnNV) then
+				if Counter.Tick2("NVAttackCount9", SecretRespawnNV) then
 					for i = 1, 14 do
-						SetEntityName(AI.Entity_CreateFormation(16, EvilTable[i], nil, EvilTable[15], SpawnPos.X, SpawnPos.Y, 0, 1, 3
+						SetEntityName(AI.Entity_CreateFormation(16, SecretEvilTable[i], nil, SecretEvilTable[15], SpawnPos.X, SpawnPos.Y, 0, 1, 3
 							, 0), "NV"..i.."_9")
 						AddWaypoints("NV"..i.."_9", { "gatepos" })
 						AddWaypoints("NV"..i.."_9", { "Bar_Waypoint3" })

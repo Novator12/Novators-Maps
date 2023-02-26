@@ -10,15 +10,247 @@ function ActivateTriggers()
 		table.insert(Erbe.Trigger,_G["SerfsDeadTrigger_ID"..i])
 	end
 
+	--SpawnerHandler
+	Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND, nil, "SpawnerHandler", 1, nil, nil)
+
 	--HandelBalancing
 	Trigger.RequestTrigger(Events.LOGIC_EVENT_GOODS_TRADED,nil,"TransactionDetails",1,nil,nil) 
 
 	--Trigger Palisadentor Varg
 	Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND,nil,"VargGateChecker",1,nil,nil)
 
-	--ChestTrigger
-	Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND, nil, "RandomChestHandler", 1, nil, nil)
+	--BarmeciaTrigger
+	Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND, nil, "BarmeciaHandler", 1, nil, nil)
+
+	--FolklungTrigger
+	Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND, nil, "FolklungHandler", 1, nil, nil)
+
+	--DarioTrigger
+	Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND, nil, "DarioHandler", 1, nil, nil)
+
+	--All AI´s triggert
+	Trigger.RequestTrigger(Events.LOGIC_EVENT_EVERY_SECOND, nil, "EnemyHandler", 1, nil, nil)
+
 end
+
+FlagDarBa = false
+NorBarFlag = false
+FlagFolkBar = false
+VargFlankFlag = false
+
+function SpawnerHandler()
+
+	if FlagDarBa == true and NorBarFlag == true and FlagFolkBar == true and VargFlankFlag == true then
+		return true
+	end
+
+	local pos1 = GetPosition("NorCheck1")
+	local pos2 = GetPosition("NorCheck2")
+	if 	(Logic.GetPlayerEntitiesInArea(1,0,pos1.X,pos1.Y,1000,2) > 0 or Logic.GetPlayerEntitiesInArea(2,0,pos1.X,pos1.Y,1000,2) >0 or Logic.GetPlayerEntitiesInArea(1,0,pos2.X,pos2.Y,1000,2) >0 or Logic.GetPlayerEntitiesInArea(2,0,pos2.X,pos2.Y,1000,2) >0) and NorBarFlag == false then
+		ActivateBarmeciaAttackers()
+		ActivateNorfolkBarmeciaAttack()
+		for i=1,3 do
+			ReplaceEntity("NorGate"..i,Entities.XD_WallStraightGate)
+		end
+		NorBarFlag = true
+	end
+
+	local pos3 = GetPosition("outpost_gate2")
+	local pos4 = GetPosition("dariobandtrig")
+	if 	(Logic.GetPlayerEntitiesInArea(1,0,pos3.X,pos3.Y,2000,2) > 0 or Logic.GetPlayerEntitiesInArea(2,0,pos3.X,pos3.Y,2000,2) >0 or Logic.GetPlayerEntitiesInArea(1,0,pos4.X,pos4.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(2,0,pos4.X,pos4.Y,4000,2) >0) and FlagDarBa == false then
+		ActivateID8FightID7()
+		FlagDarBa = true
+	end
+
+	local pos5 = GetPosition("folkTrig")
+	local pos6 = GetPosition("dariobandtrig")
+	if 	(Logic.GetPlayerEntitiesInArea(1,0,pos5.X,pos5.Y,12000,2) > 0 or Logic.GetPlayerEntitiesInArea(2,0,pos5.X,pos5.Y,12000,2) >0 or Logic.GetPlayerEntitiesInArea(1,0,pos6.X,pos6.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(2,0,pos6.X,pos6.Y,4000,2) >0) and FlagFolkBar == false then
+		ActivateBarbarenAttackers()
+		ActivateFolklungAttackers()
+		FlagFolkBar = true
+	end
+
+
+	local pos7 = GetPosition("VargFlankTrig2")
+	local pos8 = GetPosition("dariobandtrig")
+	local pos9 = GetPosition("VargFlankTrig1")
+	if 	(Logic.GetPlayerEntitiesInArea(1,0,pos7.X,pos7.Y,4000,2) > 0 or Logic.GetPlayerEntitiesInArea(2,0,pos7.X,pos7.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(1,0,pos8.X,pos8.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(2,0,pos8.X,pos8.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(1,0,pos9.X,pos9.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(2,0,pos9.X,pos9.Y,4000,2) >0) and VargFlankFlag == false then
+		ActivateVargFlankeAttackers()
+		VargFlankFlag = true
+	end
+
+end
+
+enemyCount = 0
+
+
+function BarmeciaHandler()
+	local pos1 = GetPosition("BarmCenter")
+	local Ent1 = {Logic.GetPlayerEntitiesInArea(1,0,pos1.X,pos1.Y,10000,2)}
+	local Ent2 = {Logic.GetPlayerEntitiesInArea(2,0,pos1.X,pos1.Y,10000,2)}
+	
+
+	for i = 2, table.getn(Ent1) do
+		local type = Logic.GetEntityType(Ent1[i])
+		if (Logic.IsSettler(Ent1[i]) == 1 and Logic.IsHero(Ent1[i]) == 0 ) and BarmeciaFlag == false then
+			SetTableDiplomacyState(3, Player1State, BarmeciaState)
+			SetTableDiplomacyState(3, Player2State, BarmeciaState)
+			if BarmQuestActive == true then
+				NonPlayerCharacter.Deactivate("BarmeciaMayor")
+			end
+			Erbe.SetupAIBar()
+			Erbe.UpgradeBarmeciaAggressivness()
+			Message("@color:255,0,0 Warnung: @color:255,255,255 Barmecia hat euch den Krieg erklärt, da Ihr das Abkommen gebrochen habt.")
+			enemyCount = enemyCount+1
+			FailedBarm = true
+			return true
+		end
+	end
+
+	Ent1 = nil
+
+	for i = 2, table.getn(Ent2) do
+		local type = Logic.GetEntityType(Ent2[i])
+		if (Logic.IsSettler(Ent2[i]) == 1 and Logic.IsHero(Ent2[i]) == 0 ) and BarmeciaFlag == false then
+			SetTableDiplomacyState(3, Player1State, BarmeciaState)
+			SetTableDiplomacyState(3, Player2State, BarmeciaState)
+			if BarmQuestActive == true then
+				NonPlayerCharacter.Deactivate("BarmeciaMayor")
+			end
+			Erbe.SetupAIBar()
+			Erbe.UpgradeBarmeciaAggressivness()
+			Message("@color:255,0,0 Warnung: @color:255,255,255 Barmecia hat euch den Krieg erklärt, da Ihr das Abkommen gebrochen habt.")
+			enemyCount = enemyCount+1
+			FailedBarm = true
+			return true
+		end
+	end
+
+	Ent2 = nil
+
+	if BarmeciaFlag == true then
+		return true
+	end
+
+end
+
+
+function FolklungHandler()
+	local pos1 = GetPosition("FolklungCenter")
+	local Ent1 = { Logic.GetPlayerEntitiesInArea(1, 0, pos1.X, pos1.Y, 15000, 2) }
+	local Ent2 = { Logic.GetPlayerEntitiesInArea(2, 0, pos1.X, pos1.Y, 15000, 2) }
+
+
+	for i = 2, table.getn(Ent1) do
+		local type = Logic.GetEntityType(Ent1[i])
+		if (Logic.IsSettler(Ent1[i]) == 1 and Logic.IsHero(Ent1[i]) == 0 ) and FolklungFlag == false then
+			SetTableDiplomacyState(3, Player1State, FolklungState)
+			SetTableDiplomacyState(3, Player2State, FolklungState)
+			if FolkQuestActive == true then
+				NonPlayerCharacter.Deactivate("salim")
+			end
+			Message("@color:255,0,0 Warnung: @color:255,255,255 Folklung hat euch den Krieg erklärt, da Ihr das Abkommen gebrochen habt.")
+			enemyCount = enemyCount + 1
+			FailedFolk = true
+			Erbe.SetupAIFolk()
+			Erbe.UpgradeFolklungAggressivness()
+			Erbe.SetupAIOutpost()
+			Erbe.UpgradeOutpostAggressivness()
+			return true
+		end
+	end
+
+	Ent1 = nil
+
+	for i = 2, table.getn(Ent2) do
+		local type = Logic.GetEntityType(Ent2[i])
+		if (Logic.IsSettler(Ent2[i]) == 1 and Logic.IsHero(Ent2[i]) == 0 ) and FolklungFlag == false then
+			SetTableDiplomacyState(3, Player1State, FolklungState)
+			SetTableDiplomacyState(3, Player2State, FolklungState)
+			if FolkQuestActive == true then
+				NonPlayerCharacter.Deactivate("salim")
+			end
+			Message("@color:255,0,0 Warnung: @color:255,255,255 Folklung hat euch den Krieg erklärt, da Ihr das Abkommen gebrochen habt.")
+			enemyCount = enemyCount + 1
+			FailedFolk = true
+			Erbe.SetupAIFolk()
+			Erbe.UpgradeFolklungAggressivness()
+			Erbe.SetupAIOutpost()
+			Erbe.UpgradeOutpostAggressivness()
+			return true
+		end
+	end
+
+	Ent2 = nil
+
+	if FolklungFlag == true then
+		return true
+	end
+end
+function DarioHandler()
+	local pos1 = GetPosition("okcTrigger")
+	local Ent1 = { Logic.GetPlayerEntitiesInArea(1, 0, pos1.X, pos1.Y, 5000, 2) }
+	local Ent2 = { Logic.GetPlayerEntitiesInArea(2, 0, pos1.X, pos1.Y, 5000, 2) }
+
+
+	for i = 2, table.getn(Ent1) do
+		local type = Logic.GetEntityType(Ent1[i])
+		if (Logic.IsSettler(Ent1[i]) == 1 and Logic.IsHero(Ent1[i]) == 0 ) and DarioFlag == false then
+			SetTableDiplomacyState(3, Player1State, FolklungState)
+			SetTableDiplomacyState(3, Player2State, FolklungState)
+			SetTableDiplomacyState(3, Player1State, DarioState)
+			SetTableDiplomacyState(3, Player2State, DarioState)
+			if OKCQuestActive == true then
+				NonPlayerCharacter.Deactivate("ari")
+			end
+			Message("@color:255,0,0 Warnung: @color:255,255,255 OldKingsCastle hat euch den Krieg erklärt, da Ihr das Abkommen gebrochen habt.")
+			enemyCount = enemyCount + 1
+			FailedOKC = true
+			Erbe.SetupAIDario()
+			Erbe.UpgradeDarioAggressivness()
+			return true
+		end
+	end
+
+	Ent1 = nil
+
+	for i = 2, table.getn(Ent2) do
+		local type = Logic.GetEntityType(Ent2[i])
+		if (Logic.IsSettler(Ent2[i]) == 1 and Logic.IsHero(Ent2[i]) == 0 ) and DarioFlag == false then
+			SetTableDiplomacyState(3, Player1State, FolklungState)
+			SetTableDiplomacyState(3, Player2State, FolklungState)
+			SetTableDiplomacyState(3, Player1State, DarioState)
+			SetTableDiplomacyState(3, Player2State, DarioState)
+			if OKCQuestActive == true then
+				NonPlayerCharacter.Deactivate("ari")
+			end
+			Message("@color:255,0,0 Warnung: @color:255,255,255 OldKingsCastle hat euch den Krieg erklärt, da Ihr das Abkommen gebrochen habt.")
+			enemyCount = enemyCount + 1
+			FailedOKC = true
+			Erbe.SetupAIDario()
+			Erbe.UpgradeDarioAggressivness()
+			return true
+		end
+	end
+
+	Ent2 = nil
+
+	if DarioFlag == true then
+		return true
+	end
+end
+
+
+
+
+function EnemyHandler()
+	if enemyCount >= 3 then
+		SecretFlag = true
+		Message("@color:255,0,0 Warnung: @color:255,255,255 Ihr habt mit allen Parteien das Abkommen gebrochen. Sie werden nun gegen euch gemeinsam vorgehen.")
+		return true
+	end
+end
+
 
 VargGateFlag = false
 

@@ -1,6 +1,6 @@
-function ActivateNorfolkAttackers()
+NorfolkStrenght = 1
 
-	NorfolkStrenght = 1
+function ActivateNorfolkAttackers()
 
 	RespawnNorBar = 60
 
@@ -13,47 +13,7 @@ function ActivateNorfolkAttackers()
 	end
 
 
-	function StrongerNorfolkJob1()
-		if IsExisting("id5_bogen1") or IsExisting("id5_kaserne1")  then
-			Message("@color:255,0,0 Achtung: @color:255,255,255 Norfolk's Angriffe werden stärker!")
-			NorfolkStrenght = 2
-		end
-	end
-
-	function StrongerNorfolkJob2()
-		if IsExisting("id5_bogen1") or IsExisting("id5_kaserne1")   then
-			Message("@color:255,0,0 Achtung: @color:255,255,255 Norfolk's Angriffe werden stärker!")
-			NorfolkStrenght = 3
-		end
-	end
-
-
-	function DelayStrongerNorfolk1()
-
-		if CheckMode == 1 then
-			 Norf1 = 30 * 60
-		elseif CheckMode == 2 then
-			Norf1 = 25 * 60
-		elseif CheckMode == 3 then
-			Norf1 = 20 * 60
-		end
-
-		StartCountdown(Norf1,StrongerNorfolkJob1,false)
-	end
-
-
-	function DelayStrongerNorfolk2()
-
-		if CheckMode == 1 then
-			Norf2 = 60 * 60
-	   elseif CheckMode == 2 then
-			Norf2 = 50 * 60
-	   elseif CheckMode == 3 then
-			Norf2 = 40 * 60
-	   end
-
-		StartCountdown(Norf2, StrongerNorfolkJob2, false)
-	end
+	
 
 
 	function NorfolkAttack1()
@@ -228,9 +188,9 @@ function ActivateNorfolkAttackers()
 		end
 	end
 
+end
 
-
-
+function ActivateNorfolkBarmeciaAttack()
 	--AttackBarmecia
 
 
@@ -360,3 +320,46 @@ function ActivateNorfolkAttackers()
 
 end
 
+
+
+function StrongerNorfolkJob1()
+	if IsExisting("id5_bogen1") or IsExisting("id5_kaserne1")  then
+		Message("@color:255,0,0 Achtung: @color:255,255,255 Norfolk's Angriffe werden stärker!")
+		NorfolkStrenght = 2
+	end
+end
+
+function StrongerNorfolkJob2()
+	if IsExisting("id5_bogen1") or IsExisting("id5_kaserne1")   then
+		Message("@color:255,0,0 Achtung: @color:255,255,255 Norfolk's Angriffe werden stärker!")
+		NorfolkStrenght = 3
+	end
+end
+
+
+function DelayStrongerNorfolk1()
+
+	if CheckMode == 1 then
+		 Norf1 = 30 * 60
+	elseif CheckMode == 2 then
+		Norf1 = 25 * 60
+	elseif CheckMode == 3 then
+		Norf1 = 20 * 60
+	end
+
+	StartCountdown(Norf1,StrongerNorfolkJob1,false)
+end
+
+
+function DelayStrongerNorfolk2()
+
+	if CheckMode == 1 then
+		Norf2 = 60 * 60
+   elseif CheckMode == 2 then
+		Norf2 = 50 * 60
+   elseif CheckMode == 3 then
+		Norf2 = 40 * 60
+   end
+
+	StartCountdown(Norf2, StrongerNorfolkJob2, false)
+end

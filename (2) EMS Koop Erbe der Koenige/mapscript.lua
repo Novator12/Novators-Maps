@@ -41,7 +41,7 @@ EMS_CustomMapConfig =
 	-- * Configuration File Version
 	-- * A version check will make sure every player has the same version of the configuration file
 	-- ********************************************************************************************
-	Version = 1.3,
+	Version = 1.6,
  
 	-- ********************************************************************************************
 	-- * Debug Mode
@@ -65,11 +65,11 @@ EMS_CustomMapConfig =
 	-- ********************************************************************************************
 	CustomDebugFunc1 = function(_fromPlayer, _targetPlayerId1, _targetPlayerId2, _x, _y)
 		Logic.CreateEntity(Entities.PU_LeaderSword1, _x, _y, 0, _fromPlayer);
-		Logic.CreateEntity(Entities.PU_LeaderSword1, _x, _y, 0, _fromPlayer+1);
+		
 	end,
 	CustomDebugFunc2 = function(_fromPlayer, _target1, _target2, _x, _y)
-		ResearchTechnology(Technologies.T_SuperTechnology,1)
-		ResearchTechnology(Technologies.T_SuperTechnology,2)
+		Logic.CreateEntity(Entities.PU_LeaderSword1, _x, _y, 0, _fromPlayer+1);
+
 	end,
  
 	-- ********************************************************************************************

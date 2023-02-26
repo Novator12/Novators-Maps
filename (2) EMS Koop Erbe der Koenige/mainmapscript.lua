@@ -1,9 +1,14 @@
 -- Hier kommen meine Funktionen rein, die nach den Regeleinstellungen ausgeführt
 -- werden sollen. Sind Regeln fest, dann wird es sofort ausgeführt.
 
-    VersionCheck = 1.4
+    VersionCheck = 1.6
 
 function OnGameStart()
+
+    FailedBarm = false
+    FailedFolk = false
+    FailedOKC = false
+
 
     if EMS.RD.Rules.GameMode.value == 1 then
         EMS.RD.Rules.Peacetime.value = 64
@@ -228,11 +233,7 @@ end
 function StartIntroErbe()
     --StartArmeen
     ActivateNorfolkAttackers()
-    ActivateBarmeciaAttackers()
-    ActivateID8FightID7() 
-    ActivateBarbarenAttackers()
-    ActivateFolklungAttackers()
-    ActivateVargFlankeAttackers()
+    Erbe.SetupAIVargOutpost()
     --Händler kommt das erste mal nach 20 min
     StartCountdown(60*20,InitTrader,false)
     --Upgrade AI Init
@@ -246,31 +247,23 @@ end
 -- die Regeln eingestellt wurden.
 function OnPeacetimeOver()
 
+    Erbe.SetupAIVargMain()
+    Erbe.SetupAIBanditen()
+    
     StartQuestline()
+    ActivateID8FightID7()
     ActivateBanditIron()
     ActivateBanditAttackers()
     --ActivateAttackers
     StartSimpleJob("NorfolkAttack1")
 	StartSimpleJob("NorfolkAttack2")
-    if table.getn(GetActivePlayers())>1 then
-		DelayStrongerNorfolk1()
-		DelayStrongerNorfolk2()
-        DelayStrongerBarmeica1()
-		DelayStrongerBarmeica2()
-    else
-		DelayStrongerNorfolk1()
-		DelayStrongerNorfolk2()
-        DelayStrongerBarmeica1()
-		DelayStrongerBarmeica2()
-    end
-
+    DelayStrongerNorfolk1()
+    DelayStrongerNorfolk2()
+    DelayStrongerBarmeica1()
+    DelayStrongerBarmeica2()
     ReplaceEntity("sp1_gate",Entities.XD_PalisadeGate2)
-	if table.getn(GetActivePlayers())>1 then
-        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-        Logic.AddQuest(2, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-	else
-        Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
-    end
+    Logic.AddQuest(1, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
+    Logic.AddQuest(2, 3, MAINQUEST_CLOSED, "@color:255,255,0 Siedlungsbau", "@color:255,255,255 Errichtet euch eine gerüstete Siedlung. @cr @cr Eure Gegner werden euch zum Ablauf des Waffenstillstands entdeckt haben.", 1)
 end
 
 
@@ -521,7 +514,6 @@ function Erbe.Mode1()
     Message("Schwierigkeit: @color:57,245,26 LEICHT @color:255,255,255 wurde gewaehlt!")
     ActivateBandits()
     ActivateIronDef()
-    Erbe.SetupAI()
 end
 
 ---Normal
@@ -546,7 +538,6 @@ function Erbe.Mode2()
     Message("Schwierigkeit: @color:255,150,0 NORMAL @color:255,255,255 wurde gewaehlt!")
     ActivateBandits()
     ActivateIronDef()
-    Erbe.SetupAI()
 end
 
 ---Hard
@@ -570,7 +561,6 @@ function Erbe.Mode3()
     Message("Schwierigkeit: @color:255,0,0 SCHWER @color:255,255,255 wurde gewaehlt!")
     ActivateBandits()
     ActivateIronDef()
-    Erbe.SetupAI()
 end
 
 

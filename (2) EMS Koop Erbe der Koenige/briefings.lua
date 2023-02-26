@@ -119,7 +119,9 @@ function BeginBriefing(_playerID,_Name)
 	
 	briefing.Starting = function() end
 	briefing.Finished = function()
-		Camera.ScrollSetLookAt(GetPosition(gvLastInteractionHeroName).X,GetPosition(gvLastInteractionHeroName).Y)
+		if GUI.GetPlayerID == 1 or GUI.GetPlayerID == 2 then
+			Camera.ScrollSetLookAt(GetPosition(gvLastInteractionHeroName).X,GetPosition(gvLastInteractionHeroName).Y)
+		end
 	end
 	return BriefingSystem.Start(_playerID, _Name, briefing)
 end
@@ -497,11 +499,11 @@ function StartBarmeciaMayorBrief(_playerID,_Name)
 
 end
 
+BarmeciaFlag = false
 
 function CounterJobBarmeciaMayor()
 	if BriefCountBarmeciaMayor == 2 then
 		TributBarmecia()
-		BarmeciaFlag = false
 		return true
 	end
 end
@@ -571,11 +573,11 @@ function StartFolklungBrief(_playerID,_Name)
 
 end
 
+FolklungFlag = false
 
 function CounterJobFolklung()
 	if BriefCountFolklung == 2 then
 		TributFolklung()
-		FolklungFlag = false
 		return true
 	end
 end
@@ -646,11 +648,11 @@ function StartDarioBrief(_playerID,_Name)
 
 end
 
+DarioFlag = false
 
 function CounterJobDario()
 	if BriefCountDario == 2 then
 		TributDario()
-		DarioFlag = false
 		return true
 	end
 end

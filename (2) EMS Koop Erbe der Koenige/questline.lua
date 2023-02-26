@@ -13,24 +13,31 @@ function StartQuestline()
         Logic.AddQuest(1, 6, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
         Logic.AddQuest(2, 6, MAINQUEST_OPEN, ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].."", ""..Erbe.Tables.PlayerInfos.Colors[7].." "..Erbe.Tables.PlayerInfos.Names[7].." @color:255,255,255 wird von Banditen Angegriffen, sprecht mit Ari und Drake. Findet hierfür einen Weg, die Straßensperre zu umgehen.,", 1)
 
-
+    if FailedBarm == false then
     NonPlayerCharacter.Create(
 			{ScriptName = "BarmeciaMayor",     
 			Callback = ActivateBarmeciaBrief })
 	NonPlayerCharacter.Activate("BarmeciaMayor")
+    BarmQuestActive = true
+    end
 
-
+    if FailedFolk == false then
     NonPlayerCharacter.Create(
 			{ScriptName = "salim",   
 			Callback = ActivateFolklungBrief })
 	NonPlayerCharacter.Activate("salim")
+    FolkQuestActive = true
+    end
 
-
+    if FailedOKC == false then
     NonPlayerCharacter.Create(
 			{ScriptName = "ari",     
 			Callback = ActivateDarioBrief })
 	NonPlayerCharacter.Activate("ari")
+    OKCQuestActive = true
+    end
 
+   
     NonPlayerCharacter.Create(
 			{ScriptName = "miner",     
 			Callback = ActivateBomb1Brief()  })
@@ -83,6 +90,23 @@ end
 
 function QuestlineHandler()
     if BarmeciaFlag == true then
+        if FailedBarm == false then
+            Erbe.SetupAIBar()
+			Erbe.UpgradeBarmeciaAggressivness()
+        end
+        if FailedFolk == false then
+            Erbe.SetupAIFolk()
+			Erbe.UpgradeFolklungAggressivness()
+			Erbe.SetupAIOutpost()
+			Erbe.UpgradeOutpostAggressivness()
+        end
+        if FailedOKC == false then
+            Erbe.SetupAIDario()
+			Erbe.UpgradeDarioAggressivness()
+        end
+        Erbe.UpgradeVargOutpostAggressivness()
+        Erbe.UpgradeVargMainAggressivness()
+        Erbe.UpgradeBanditenAggressivness()
 
         Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
         Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
@@ -128,13 +152,34 @@ function QuestlineHandler()
         Logic.SetEntityInvulnerabilityFlag(GetID("id4_claymine_inv"),0)
         Logic.SetEntityInvulnerabilityFlag(GetID("FolklungCastle"),0)
         VargGateFlag = true
-        UpgradeArmyAggressivness()
         SetupFinalFight1() 
         CreateFinalFight1()
         StartSimpleJob("MinerCheck1")
         StartSimpleJob("MinerCheck2")
+        Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, -400 )
+        Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
+        Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, -400 )
+        Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
         return true
     elseif FolklungFlag == true then
+
+        if FailedBarm == false then
+            Erbe.SetupAIBar()
+			Erbe.UpgradeBarmeciaAggressivness()
+        end
+        if FailedFolk == false then
+            Erbe.SetupAIFolk()
+			Erbe.UpgradeFolklungAggressivness()
+			Erbe.SetupAIOutpost()
+			Erbe.UpgradeOutpostAggressivness()
+        end
+        if FailedOKC == false then
+            Erbe.SetupAIDario()
+			Erbe.UpgradeDarioAggressivness()
+        end
+        Erbe.UpgradeVargOutpostAggressivness()
+        Erbe.UpgradeVargMainAggressivness()
+        Erbe.UpgradeBanditenAggressivness()
 
         Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
         Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
@@ -182,13 +227,34 @@ function QuestlineHandler()
         Logic.SetEntityInvulnerabilityFlag(GetID("id4_claymine_inv"),0)
         Logic.SetEntityInvulnerabilityFlag(GetID("FolklungCastle"),0)
         VargGateFlag = true
-        UpgradeArmyAggressivness()
         SetupFinalFight2() 
         CreateFinalFight2()
         StartSimpleJob("MinerCheck1")
         StartSimpleJob("MinerCheck2")
+        Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, -400 )
+        Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
+        Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, -400 )
+        Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
         return true
     elseif DarioFlag == true then
+
+        if FailedBarm == false then
+            Erbe.SetupAIBar()
+			Erbe.UpgradeBarmeciaAggressivness()
+        end
+        if FailedFolk == false then
+            Erbe.SetupAIFolk()
+			Erbe.UpgradeFolklungAggressivness()
+			Erbe.SetupAIOutpost()
+			Erbe.UpgradeOutpostAggressivness()
+        end
+        if FailedOKC == false then
+            Erbe.SetupAIDario()
+			Erbe.UpgradeDarioAggressivness()
+        end
+        Erbe.UpgradeVargOutpostAggressivness()
+        Erbe.UpgradeVargMainAggressivness()
+        Erbe.UpgradeBanditenAggressivness()
 
         Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
         Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
@@ -234,14 +300,36 @@ function QuestlineHandler()
         Logic.SetEntityInvulnerabilityFlag(GetID("id4_claymine_inv"),0)
         Logic.SetEntityInvulnerabilityFlag(GetID("FolklungCastle"),0)
         VargGateFlag = true
-        UpgradeArmyAggressivness()
         SetupFinalFight3() 
         CreateFinalFight3()
         StartSimpleJob("MinerCheck1")
         StartSimpleJob("MinerCheck2")
+        Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, -400 )
+        Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
+        Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, -400 )
+        Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
         return true
     elseif SecretFlag == true then
 
+        if FailedBarm == false then
+            Erbe.SetupAIBar()
+			Erbe.UpgradeBarmeciaAggressivness()
+        end
+        if FailedFolk == false then
+            Erbe.SetupAIFolk()
+			Erbe.UpgradeFolklungAggressivness()
+			Erbe.SetupAIOutpost()
+			Erbe.UpgradeOutpostAggressivness()
+        end
+        if FailedOKC == false then
+            Erbe.SetupAIDario()
+			Erbe.UpgradeDarioAggressivness()
+        end
+
+        Erbe.UpgradeVargOutpostAggressivness()
+        Erbe.UpgradeVargMainAggressivness()
+        Erbe.UpgradeBanditenAggressivness()
+        
         Logic.AddQuest(1, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
         Logic.AddQuest(2, 4, MAINQUEST_CLOSED, ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].."", ""..Erbe.Tables.PlayerInfos.Colors[3].." "..Erbe.Tables.PlayerInfos.Names[3].." @color:255,255,255 steht unter Belagerung von Varg. Durchbrecht die Belagerung und eilt zum Bürgermeister um mit ihm zu sprechen,", 1)
 
@@ -289,11 +377,14 @@ function QuestlineHandler()
         Logic.SetEntityInvulnerabilityFlag(GetID("id4_claymine_inv"),0)
         Logic.SetEntityInvulnerabilityFlag(GetID("FolklungCastle"),0)
         VargGateFlag = true
-        UpgradeArmyAggressivness()
         SetupFinalFight4() 
         CreateFinalFight4()
         StartSimpleJob("MinerCheck1")
         StartSimpleJob("MinerCheck2")
+        Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, -400 )
+        Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
+        Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, -400 )
+        Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
         return true
     end
 end
