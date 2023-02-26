@@ -1,46 +1,45 @@
+function StrongerID8AndID7_2()
+	--Upgrade Bandits 
+
+	DefensiveArmy.ReplaceTroopTypes(banditID8CanonDef,Entities.PV_Cannon3,Entities.PV_Cannon4)
+	DefensiveArmy.ReplaceTroopTypes(banditID8KasernenDef,Entities.PU_LeaderSword3,Entities.PU_LeaderSword4)
+	DefensiveArmy.ReplaceTroopTypes(banditID8ArcheryDef,Entities.PU_LeaderBow3,Entities.PU_LeaderBow4)
+
+
+	--Upgrade Dario
+
+	DefensiveArmy.ReplaceTroopTypes(DarioID7ReiterDef,Entities.PU_LeaderCavalry1,Entities.PU_LeaderCavalry2)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7ReiterDef,Entities.PU_LeaderHeavyCavalry1,Entities.PU_LeaderHeavyCavalry2)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7CanonDef,Entities.PV_Cannon3,Entities.PV_Cannon4)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7KasernenDef,Entities.PU_LeaderSword3,Entities.PU_LeaderSword4)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7ArcheryDef,Entities.PU_LeaderBow3,Entities.PU_LeaderBow4)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7HqDef,Entities.PU_LeaderPoleArm3,Entities.PU_LeaderPoleArm4)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7HqDef,Entities.PU_LeaderRifle1,Entities.PU_LeaderRifle2)
+
+end
+
+function StrongerID8AndID7_1()
+
+	--Upgrade Bandits 
+	DefensiveArmy.ReplaceTroopTypes(banditID8CanonDef,Entities.PV_Cannon2,Entities.PV_Cannon3)
+	DefensiveArmy.ReplaceTroopTypes(banditID8KasernenDef,Entities.PU_LeaderSword2,Entities.PU_LeaderSword3)
+	DefensiveArmy.ReplaceTroopTypes(banditID8ArcheryDef,Entities.PU_LeaderBow2,Entities.PU_LeaderBow3)
+
+	--Upgrade Dario
+	DefensiveArmy.ReplaceTroopTypes(DarioID7CanonDef,Entities.PV_Cannon2,Entities.PV_Cannon3)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7KasernenDef,Entities.PU_LeaderSword2,Entities.PU_LeaderSword3)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7ArcheryDef,Entities.PU_LeaderBow2,Entities.PU_LeaderBow3)
+	DefensiveArmy.ReplaceTroopTypes(DarioID7HqDef,Entities.PU_LeaderPoleArm2,Entities.PU_LeaderPoleArm3)
+	
+
+	CounterDario2 = StartCountdown(20*60,StrongerID8AndID7_2,false)
+end
+
 
 function ActivateID8FightID7() 
 	
 	TimeID8AttackID7 = 120
 	
-
-	function StrongerID8AndID7_2()
-		--Upgrade Bandits 
-
-		DefensiveArmy.ReplaceTroopTypes(banditID8CanonDef,Entities.PV_Cannon3,Entities.PV_Cannon4)
-		DefensiveArmy.ReplaceTroopTypes(banditID8KasernenDef,Entities.PU_LeaderSword3,Entities.PU_LeaderSword4)
-		DefensiveArmy.ReplaceTroopTypes(banditID8ArcheryDef,Entities.PU_LeaderBow3,Entities.PU_LeaderBow4)
-
-
-		--Upgrade Dario
-
-		DefensiveArmy.ReplaceTroopTypes(DarioID7ReiterDef,Entities.PU_LeaderCavalry1,Entities.PU_LeaderCavalry2)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7ReiterDef,Entities.PU_LeaderHeavyCavalry1,Entities.PU_LeaderHeavyCavalry2)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7CanonDef,Entities.PV_Cannon3,Entities.PV_Cannon4)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7KasernenDef,Entities.PU_LeaderSword3,Entities.PU_LeaderSword4)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7ArcheryDef,Entities.PU_LeaderBow3,Entities.PU_LeaderBow4)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7HqDef,Entities.PU_LeaderPoleArm3,Entities.PU_LeaderPoleArm4)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7HqDef,Entities.PU_LeaderRifle1,Entities.PU_LeaderRifle2)
-
-	end
-
-	function StrongerID8AndID7_1()
-
-		--Upgrade Bandits 
-		DefensiveArmy.ReplaceTroopTypes(banditID8CanonDef,Entities.PV_Cannon2,Entities.PV_Cannon3)
-		DefensiveArmy.ReplaceTroopTypes(banditID8KasernenDef,Entities.PU_LeaderSword2,Entities.PU_LeaderSword3)
-		DefensiveArmy.ReplaceTroopTypes(banditID8ArcheryDef,Entities.PU_LeaderBow2,Entities.PU_LeaderBow3)
-
-		--Upgrade Dario
-		DefensiveArmy.ReplaceTroopTypes(DarioID7CanonDef,Entities.PV_Cannon2,Entities.PV_Cannon3)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7KasernenDef,Entities.PU_LeaderSword2,Entities.PU_LeaderSword3)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7ArcheryDef,Entities.PU_LeaderBow2,Entities.PU_LeaderBow3)
-		DefensiveArmy.ReplaceTroopTypes(DarioID7HqDef,Entities.PU_LeaderPoleArm2,Entities.PU_LeaderPoleArm3)
-		
-
-		CounterDario2 = StartCountdown(20*60,StrongerID8AndID7_2,false)
-	end
-
 	CounterDario1 = StartCountdown(80*60,StrongerID8AndID7_1,false)
 
 	--Banditenangriff:

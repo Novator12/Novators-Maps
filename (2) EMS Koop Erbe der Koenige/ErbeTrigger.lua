@@ -55,10 +55,12 @@ function SpawnerHandler()
 		NorBarFlag = true
 	end
 
-	local pos3 = GetPosition("outpost_gate2")
+	local pos3 = GetPosition("FolkOutpostDef1")
 	local pos4 = GetPosition("dariobandtrig")
-	if 	(Logic.GetPlayerEntitiesInArea(1,0,pos3.X,pos3.Y,2000,2) > 0 or Logic.GetPlayerEntitiesInArea(2,0,pos3.X,pos3.Y,2000,2) >0 or Logic.GetPlayerEntitiesInArea(1,0,pos4.X,pos4.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(2,0,pos4.X,pos4.Y,4000,2) >0) and FlagDarBa == false then
+	local pos10 = GetPosition("dariotrigg3")
+	if 	(Logic.GetPlayerEntitiesInArea(1,0,pos3.X,pos3.Y,2000,2) > 0 or Logic.GetPlayerEntitiesInArea(2,0,pos3.X,pos3.Y,2000,2) >0 or Logic.GetPlayerEntitiesInArea(1,0,pos4.X,pos4.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(2,0,pos4.X,pos4.Y,4000,2) >0 or Logic.GetPlayerEntitiesInArea(1,0,pos10.X,pos10.Y,2000,2) >0 or Logic.GetPlayerEntitiesInArea(2,0,pos10.X,pos10.Y,2000,2) >0) and FlagDarBa == false then
 		ActivateID8FightID7()
+		Erbe.SetupAIBanditen()
 		FlagDarBa = true
 	end
 

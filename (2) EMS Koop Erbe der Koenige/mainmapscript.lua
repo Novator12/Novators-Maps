@@ -166,7 +166,7 @@ function OnGameStart()
 
         --Tech für KI
 
-        for i=3,8,1 do
+        for i=3,16,1 do  
             Logic.SetTechnologyState(i, Technologies.T_LeatherMailArmor, 3)
             Logic.SetTechnologyState(i, Technologies.T_ChainMailArmor, 3)
             Logic.SetTechnologyState(i, Technologies.T_PlateMailArmor, 3)
@@ -248,10 +248,7 @@ end
 function OnPeacetimeOver()
 
     Erbe.SetupAIVargMain()
-    Erbe.SetupAIBanditen()
-    
     StartQuestline()
-    ActivateID8FightID7()
     ActivateBanditIron()
     ActivateBanditAttackers()
     --ActivateAttackers
@@ -1108,11 +1105,11 @@ end
 function ChangeKIBuildings()
     --Change VC
     ChangePlayer(VC_ID5,5)
-    ChangePlayer(VC_ID4_1,4)
+    ChangePlayer(VC_ID4_1,10)
     ChangePlayer(VC_ID4_2,4)
-    ChangePlayer(VC_ID4_3,4)
+    ChangePlayer(VC_ID4_3,14)
     ChangePlayer(VC_ID4_4,4)
-    ChangePlayer(VC_ID7_1,7)
+    ChangePlayer(VC_ID7_1,12)
     ChangePlayer(VC_ID7_2,7)
     ChangePlayer(VC_ID8,8)
 
@@ -1159,8 +1156,8 @@ function OverrideInteractionNPCCallback()
     GameCallback_Logic_InteractWithCharacter = function(_PlayerID, _HeroID, _NpcID)
         -- Define the last hero and NPC for the other player.
         local OtherPlayer = (_PlayerID == 1 and 2) or 1;
-        Interaction.Internal.LastInteractionHero[OtherPlayer] = _HeroID;
-        Interaction.Internal.LastInteractionNpc[OtherPlayer] = _NpcID;
+        Interaction.Internal.LastInteractionHero[OtherPlayer] = Logic.GetEntityName(_HeroID);
+        Interaction.Internal.LastInteractionNpc[OtherPlayer] = Logic.GetEntityName(_NpcID);
         -- Call original for NPC callback and stuff
         Orig_GameCallback_Logic_InteractWithCharacter();
     end

@@ -40,12 +40,12 @@ function StartQuestline()
    
     NonPlayerCharacter.Create(
 			{ScriptName = "miner",     
-			Callback = ActivateBomb1Brief()  })
+			Callback = ActivateBomb1Brief  })
 	NonPlayerCharacter.Activate("miner")
 
     NonPlayerCharacter.Create(
 			{ScriptName = "legend",     
-			Callback = ActivateLegendBrief()  })
+			Callback = ActivateLegendBrief  })
 	NonPlayerCharacter.Activate("legend")
 
 
@@ -137,9 +137,18 @@ function QuestlineHandler()
         SetTableDiplomacyState(3, BarmeciaState, DarioState)
         SetTableDiplomacyState(3, BarmeciaState, FolklungState)
         SetTableDiplomacyState(1, DarioState, FolklungState)
+        SetTableDiplomacyState(1, DarioState, RobberState)
+        SetTableDiplomacyState(1, FolklungState, RobberState)
+        SetTableDiplomacyState(1, FolklungState, VargState)
+        SetTableDiplomacyState(1, DarioState, VargState)
         Gate_ID7_State = false
         for i=1,9,1 do
             DestroyEntity("block"..i)
+        end
+        for j=1,18,1 do
+            if IsExisting("ev"..j) then
+                DestroyEntity("ev"..j)
+            end
         end
         ChangeKIBuildings()
 
@@ -156,10 +165,7 @@ function QuestlineHandler()
         CreateFinalFight1()
         StartSimpleJob("MinerCheck1")
         StartSimpleJob("MinerCheck2")
-        Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, -400 )
-        Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
-        Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, -400 )
-        Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
+        StartMapChangesBrief(1,"MapChangesBrief")
         return true
     elseif FolklungFlag == true then
 
@@ -212,9 +218,18 @@ function QuestlineHandler()
         SetTableDiplomacyState(1, BarmeciaState, DarioState)
         SetTableDiplomacyState(3, BarmeciaState, FolklungState)
         SetTableDiplomacyState(3, DarioState, FolklungState)
+        SetTableDiplomacyState(1, DarioState, RobberState)
+        SetTableDiplomacyState(1, BarmeciaState, RobberState)
+        SetTableDiplomacyState(1, BarmeciaState, VargState)
+        SetTableDiplomacyState(1, DarioState, VargState)
         Gate_ID7_State = false
         for i=1,9,1 do
             DestroyEntity("block"..i)
+        end
+        for j=1,18,1 do
+            if IsExisting("ev"..j) then
+                DestroyEntity("ev"..j)
+            end
         end
         ChangeKIBuildings()
 
@@ -231,10 +246,7 @@ function QuestlineHandler()
         CreateFinalFight2()
         StartSimpleJob("MinerCheck1")
         StartSimpleJob("MinerCheck2")
-        Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, -400 )
-        Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
-        Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, -400 )
-        Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
+        StartMapChangesBrief(1,"MapChangesBrief")
         return true
     elseif DarioFlag == true then
 
@@ -285,9 +297,18 @@ function QuestlineHandler()
         SetTableDiplomacyState(3, BarmeciaState, DarioState)
         SetTableDiplomacyState(1, BarmeciaState, FolklungState)
         SetTableDiplomacyState(3, DarioState, FolklungState)
+        SetTableDiplomacyState(1, FolklungState, RobberState)
+        SetTableDiplomacyState(1, BarmeciaState, RobberState)
+        SetTableDiplomacyState(1, BarmeciaState, VargState)
+        SetTableDiplomacyState(1, FolklungState, VargState)
         Gate_ID7_State = false
         for i=1,9,1 do
             DestroyEntity("block"..i)
+        end
+        for j=1,18,1 do
+            if IsExisting("ev"..j) then
+                DestroyEntity("ev"..j)
+            end
         end
         ChangeKIBuildings()
 
@@ -304,10 +325,7 @@ function QuestlineHandler()
         CreateFinalFight3()
         StartSimpleJob("MinerCheck1")
         StartSimpleJob("MinerCheck2")
-        Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, -400 )
-        Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
-        Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, -400 )
-        Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
+        StartMapChangesBrief(1,"MapChangesBrief")
         return true
     elseif SecretFlag == true then
 
@@ -366,6 +384,11 @@ function QuestlineHandler()
         for i=1,9,1 do
             DestroyEntity("block"..i)
         end
+        for j=1,18,1 do
+            if IsExisting("ev"..j) then
+                DestroyEntity("ev"..j)
+            end
+        end
         ChangeKIBuildings()
 
         for i =1,4,1 do
@@ -381,10 +404,7 @@ function QuestlineHandler()
         CreateFinalFight4()
         StartSimpleJob("MinerCheck1")
         StartSimpleJob("MinerCheck2")
-        Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, -400 )
-        Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
-        Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, -400 )
-        Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
+        StartMapChangesBrief(1,"MapChangesBrief")
         return true
     end
 end

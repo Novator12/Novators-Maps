@@ -1273,3 +1273,103 @@ function CounterJobSecretQuest()
 	end
 end
 StartSimpleJob("CounterJobSecretQuest")
+
+
+
+
+
+
+function StartMapChangesBrief(_playerID,_Name)
+
+	local briefing = {
+		DisableSkipping = true,
+		RestoreCamera = true,
+		RenderFoW = false,
+		RenderSky = true,
+	}
+	local AP,ASP,AMC = BriefingSystem.AddPages(briefing)
+
+	AP{
+		Title    = "@color:255,255,0 @center Info",
+        Text     = "@color:255,255,255 Aufgrund der Änderung der politischen Lage im Königreich hat sich Folklung dazu entschlossen, versperrte Passagen freizulegen.",
+        Target   = "salim",
+        MiniMap = false,
+		Action = function() 
+			serfNPCTable = {}
+			for i = 1,3,1 do
+				local posi1 = GetPosition("pas"..i)
+				serfNPCTable[i] = Logic.CreateEntity(Entities.PU_Serf,posi1.X,posi1.Y,235,6)
+			end
+			for i = 4,6,1 do
+				local posi2 = GetPosition("pas"..i)
+				serfNPCTable[i] = Logic.CreateEntity(Entities.PU_Serf,posi2.X,posi2.Y,275,6)
+			end
+			for j = table.getn(serfNPCTable),1,-1 do
+				Logic.SetTaskList(serfNPCTable[j], TaskLists.TL_SERF_EXTRACT_RESOURCE);
+			end
+		end,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Info",
+        Text     = "@color:255,255,255 Die Leibeigenen von Folklung heben die überschwämmten Wege im Moor aus.",
+        Target   = "pas2",
+        MiniMap = false,
+		Action = function() StartSimpleJob("ReduceWaterHeight1") end,
+        
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Info",
+        Text     = "@color:255,255,255 Die Leibeigenen von Folklung heben die überschwämmten Wege im Moor aus.",
+        Target   = "pas5",
+        MiniMap = false,
+		Action = function() StartSimpleJob("ReduceWaterHeight2") end,
+	}
+	AP{
+		Title    = "@color:255,255,0 @center Info",
+        Text     = "@color:255,255,255 Ebenso hat Folklung den Bergpass bei Ihrem Außenposten gesprengt.",
+        Target   = "exp3",
+        MiniMap = false,
+		Action = function() 
+			for i=1,5,1 do  
+				local pos = GetPosition("exp"..i)
+				Logic.CreateEntity(Entities.XD_Bomb1,pos.X,pos.Y,0,1)
+			end 
+		end,
+	}
+	
+	
+	briefing.Starting = function() end
+	briefing.Finished = function() 
+		for n = table.getn(serfNPCTable),1,-1 do
+			if IsExisting(serfNPCTable[n]) then
+				DestroyEntity(serfNPCTable[n])
+			end
+		end
+	end
+	return BriefingSystem.Start(_playerID, _Name, briefing)
+
+end
+
+
+CountWater1 = 0
+function ReduceWaterHeight1()
+	if CountWater1 ~= -400 then
+		CountWater1 = CountWater1 -100
+		Logic.WaterSetRelativeHeight(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100, GetPosition("water4").Y/100, CountWater1 )
+	elseif CountWater1 == -400 then
+		Logic.UpdateBlocking(GetPosition("water3").X/100, GetPosition("water3").Y/100,GetPosition("water4").X/100,GetPosition("water4").Y/100)
+		return true
+	end
+end
+
+CountWater2 = 0
+function ReduceWaterHeight2()
+	if CountWater2 ~= -400 then
+		CountWater2 = CountWater2 -100
+		Logic.WaterSetRelativeHeight(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100, GetPosition("water2").Y/100, CountWater2 )
+	elseif CountWater2 == -400 then
+		Logic.UpdateBlocking(GetPosition("water1").X/100, GetPosition("water1").Y/100,GetPosition("water2").X/100,GetPosition("water2").Y/100)
+		return true
+	end
+end
