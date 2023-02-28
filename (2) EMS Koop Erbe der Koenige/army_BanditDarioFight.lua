@@ -1,3 +1,83 @@
+function StopID8Def1()
+	if IsDestroyed("id8_turm") then
+		DefensiveArmy.StopRespawn(banditID8TowerDef)
+		return true;
+	end
+end
+
+
+function StopID8Def2()
+	if IsDestroyed("id8_kanonen") then
+		DefensiveArmy.StopRespawn(banditID8CanonDef)
+		return true;
+	end
+end
+
+function StopID8Def3()
+	if IsDestroyed("id8_kaserne") then
+		DefensiveArmy.StopRespawn(banditID8KasernenDef)
+		return true;
+	end
+end
+
+function StopID8Def4()
+	if IsDestroyed("id8_archery") then
+		DefensiveArmy.StopRespawn(banditID8ArcheryDef)
+		return true;
+	end
+end
+
+function StopID8Def5()
+	if IsDestroyed("hq8") then
+		DefensiveArmy.StopRespawn(banditID8HqDef)
+		return true;
+	end
+end
+
+
+
+
+
+function StopID7Def1()
+	if IsDestroyed("id7_reiter") then
+		DefensiveArmy.StopRespawn(DarioID7ReiterDef)
+		return true;
+	end
+end
+
+
+function StopID7Def2()
+	if IsDestroyed("id7_kanonen") then
+		DefensiveArmy.StopRespawn(DarioID7CanonDef)
+		return true;
+	end
+end
+
+function StopID7Def3()
+	if IsDestroyed("id7_kaserne1") then
+		DefensiveArmy.StopRespawn(DarioID7KasernenDef)
+		return true;
+	end
+end
+
+function StopID7Def4()
+	if IsDestroyed("id7_archery2") then
+		DefensiveArmy.StopRespawn(DarioID7ArcheryDef)
+		return true;
+	end
+end
+
+function StopID7Def5()
+	if IsDestroyed("hq7") then
+		DefensiveArmy.StopRespawn(DarioID7HqDef)
+		return true;
+	end
+end
+
+
+
+
+
 function StrongerID8AndID7_2()
 	--Upgrade Bandits 
 
@@ -69,41 +149,7 @@ function ActivateID8FightID7()
 			DefensiveArmy.AddTroopSpawn(banditID8HqDef, TimeID8AttackID7, Entities.CU_Barbarian_LeaderClub1, 8, GetPosition("spawn_hq8").X, GetPosition("spawn_hq8").Y, 0, math.random(1, 4));
 		
 		
-		function StopID8Def1()
-			if IsDestroyed("id8_turm") then
-				DefensiveArmy.StopRespawn(banditID8TowerDef)
-				return true;
-			end
-		end
-		
-		
-		function StopID8Def2()
-			if IsDestroyed("id8_kanonen") then
-				DefensiveArmy.StopRespawn(banditID8CanonDef)
-				return true;
-			end
-		end
-
-		function StopID8Def3()
-			if IsDestroyed("id8_kaserne") then
-				DefensiveArmy.StopRespawn(banditID8KasernenDef)
-				return true;
-			end
-		end
-
-		function StopID8Def4()
-			if IsDestroyed("id8_archery") then
-				DefensiveArmy.StopRespawn(banditID8ArcheryDef)
-				return true;
-			end
-		end
-
-		function StopID8Def5()
-			if IsDestroyed("hq8") then
-				DefensiveArmy.StopRespawn(banditID8HqDef)
-				return true;
-			end
-		end
+	
 
 	
 
@@ -138,47 +184,8 @@ function ActivateID8FightID7()
 			DefensiveArmy.AddTroopSpawn(DarioID7HqDef, TimeID8AttackID7, Entities.PU_LeaderRifle1, 8, GetPosition("spawn_hq7").X, GetPosition("spawn_hq7").Y, 0, math.random(1, 4));
 			DefensiveArmy.AddTroopSpawn(DarioID7HqDef, TimeID8AttackID7, Entities.PU_LeaderPoleArm2, 8, GetPosition("spawn_hq7").X, GetPosition("spawn_hq7").Y, 0, math.random(1, 4));
 			
-			
-			
-			function StopID7Def1()
-				if IsDestroyed("id7_reiter") then
-					DefensiveArmy.StopRespawn(DarioID7ReiterDef)
-					return true;
-				end
-			end
-			
-			
-			function StopID7Def2()
-				if IsDestroyed("id7_kanonen") then
-					DefensiveArmy.StopRespawn(DarioID7CanonDef)
-					return true;
-				end
-			end
-	
-			function StopID7Def3()
-				if IsDestroyed("id7_kaserne1") then
-					DefensiveArmy.StopRespawn(DarioID7KasernenDef)
-					return true;
-				end
-			end
-	
-			function StopID7Def4()
-				if IsDestroyed("id7_archery2") then
-					DefensiveArmy.StopRespawn(DarioID7ArcheryDef)
-					return true;
-				end
-			end
-	
-			function StopID7Def5()
-				if IsDestroyed("hq7") then
-					DefensiveArmy.StopRespawn(DarioID7HqDef)
-					return true;
-				end
-			end
 	
 		
-	
-	
 			--Spawnerkontrolle aktivieren:
 			SpawnerCheckerID7Def()
 
@@ -200,3 +207,6 @@ function SpawnerCheckerID7Def()
 	StartSimpleJob("StopID7Def4")
 	StartSimpleJob("StopID7Def5")
 end
+
+
+

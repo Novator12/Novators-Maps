@@ -1,7 +1,7 @@
 -- Hier kommen meine Funktionen rein, die nach den Regeleinstellungen ausgeführt
 -- werden sollen. Sind Regeln fest, dann wird es sofort ausgeführt.
 
-    VersionCheck = 1.7
+    VersionCheck = 1.8
 
 function OnGameStart()
 
@@ -63,10 +63,10 @@ function OnGameStart()
     ActivateTriggers()
 
     --Truhen desyncen :( Nobody knows why? When you know it, tell me
-    -- Treasure.RandomChest("chest1_1", 200, 800)
-    -- Treasure.RandomChest("chest1_2", 200, 800)
-    -- Treasure.RandomChest("chest2_1", 200, 800)
-    -- Treasure.RandomChest("chest2_2", 200, 800)
+    Treasure.RandomChest("chest1_1", 200, 800)
+    Treasure.RandomChest("chest1_2", 200, 800)
+    Treasure.RandomChest("chest2_1", 200, 800)
+    Treasure.RandomChest("chest2_2", 200, 800)
 
 
     --AI Setup

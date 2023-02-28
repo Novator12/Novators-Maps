@@ -234,8 +234,10 @@ function Treasure.Internal:OpenRandomResourceTreasure(_Index, _PlayerID)
                 Sound.PlayGUISound(Sounds.VoicesMentor_CHEST_FoundTreasureChest_rnd_01, 70);
                 Message(Text .. Amount .. " " .. Name);
             end
+            LuaDebugger.Log("Ressource Delivered to ".._PlayerID.." and he gets:"..Amount.." of "..ResourceList[Index])
             Logic.AddToPlayersGlobalResource(_PlayerID, Resource, Amount);
         else
+            LuaDebugger.Log("Ressource Delivered to ".._PlayerID.." and he gets nothing of nil")
             if _PlayerID == GUI.GetPlayerID() then
                 Sound.PlayGUISound(Sounds.VoicesMentor_CHEST_FoundTreasureChest_rnd_01, 70);
                 Message("Diese Schatztruhe war leider leer!");
