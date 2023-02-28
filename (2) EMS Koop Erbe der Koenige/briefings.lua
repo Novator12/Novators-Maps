@@ -125,7 +125,7 @@ function BeginBriefing(_playerID,_Name)
 	
 	briefing.Starting = function() end
 	briefing.Finished = function()
-		if GUI.GetPlayerID == 1 or GUI.GetPlayerID == 2 then
+		if GUI.GetPlayerID() == 1 or GUI.GetPlayerID() == 2 then
 			Camera.ScrollSetLookAt(GetPosition(gvLastInteractionHeroName).X,GetPosition(gvLastInteractionHeroName).Y)
 		end
 	end
